@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Themes extends Model
 {
+    protected $fillable = ["character_text", "product", "scene", "close_time"];
+
     /**
      * @param Carbon $carbon
      * @return Themes

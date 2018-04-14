@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Repository\ThemesRepository;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class ThemeController extends Controller
 {
@@ -23,8 +24,25 @@ class ThemeController extends Controller
         $this->themeRepository = $themeRepository;
     }
 
+    /**
+     * @return \App\Models\Themes
+     */
     public function recent(){
         $new = $this->themeRepository->getRecent(10);
-        return ["a"];
+        return $new;
+    }
+
+
+    public function vote(){
+
+    }
+
+    public function disvote(){
+
+    }
+
+    public function add(Request $request){
+        $d = $this->themeRepository->save($request->all());
+        return response(["status"=> $d], 201);
     }
 }

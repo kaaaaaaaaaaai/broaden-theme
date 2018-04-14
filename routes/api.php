@@ -19,4 +19,6 @@ use Illuminate\Http\Request;
 
 Route::group(["prefix"=>"theme"], function(){
     Route::get("recent", "ThemeController@recent");
+
+    Route::post("add", "ThemeController@add");
 });

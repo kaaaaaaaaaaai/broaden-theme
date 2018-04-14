@@ -31,4 +31,10 @@ class ThemesRepository
     public function getRecent($limit){
         return $this->themes->aliveTheme($this->carbon)->take($limit)->get();
     }
+
+
+    public function save($data){
+        $data["close_time"] = $this->carbon->addHour(24);
+        return $this->themes->fill($data)->save();
+    }
 }
