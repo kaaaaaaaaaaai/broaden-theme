@@ -1,6 +1,7 @@
 <?php
 namespace App\Repository;
 use App\Models\Themes;
+use Carbon\Carbon;
 
 /**
  * Created by PhpStorm.
@@ -12,8 +13,22 @@ use App\Models\Themes;
 class ThemesRepository
 {
     private $themes;
-    public function __construct(Themes $themes)
+    private $carbon;
+
+    public function __construct(
+        Themes $themes,
+        Carbon $carbon
+    )
     {
         $this->themes = $themes;
+        $this->carbon = $carbon;
+    }
+
+    /**
+     * @param $limit
+     * @return Themes
+     */
+    public function getRecent($limit){
+        return $this->themes->aliveTheme($this->carbon)->take($limit)->get();
     }
 }

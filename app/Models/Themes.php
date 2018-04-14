@@ -7,9 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Themes extends Model
 {
+    /**
+     * @param Carbon $carbon
+     * @return Themes
+     */
+    function scopeAliveTheme($query, $carbon){
 
-    function scopeAliveTheme(Carbon $carbon){
-
-        return $query->where("close_date", $carbon->now());
+        return $query->where("close_time", ">", $carbon->now());
     }
 }
