@@ -7,7 +7,7 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+window.Vue = require('./components/List');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -15,7 +15,39 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
-const app = new Vue({
-    el: '#app'
-});
+// Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('list', require('./components/List.vue'));
+Vue.component('content', require('./components/Content.vue'));
+Vue.component('form', require('./components/Form.vue'));
+
+
+// ルートオプションを渡してルーターインスタンスを生成します
+var router = new VueRouter({
+  // 各ルートにコンポーネントをマッピングします
+  // コンポーネントはVue.extend() によって作られたコンポーネントコンストラクタでも
+  // コンポーネントオプションのオブジェクトでも構いません
+  routes: [
+    {
+      path: '/list',
+      name: 'list',
+      component: {list},
+      children: [
+        {
+          path:'recomend',
+          name:'recomend',
+          component:content
+        }
+      ]
+    },
+    {
+      path: '/form',
+      name: 'form',
+      component: {form}
+    }
+  ]
+})
+
+// ルーターのインスタンスをrootとなるVueインスタンスに渡します
+var app = new Vue({
+  router: router
+}).$mount('#app')
