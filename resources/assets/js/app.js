@@ -11,7 +11,7 @@ import Content from './components/Content.vue'
 import VueRouter from 'vue-router'
 import Vue from 'vue'
 
-
+Vue.use(VueRouter)
 //window.Vue = {Content};
 
 /**
@@ -34,8 +34,17 @@ const router = new VueRouter({
   routes: [
       {
           path: '/',
+          name:"Content",
           component: {Content},
-      }
+      },{
+          path: '/top',
+          name: "top",
+          component: {Content},
+      },{
+          path: '/users',
+          name: "users",
+          component: {Content},
+      },
   ]
 })
 

@@ -1,6 +1,11 @@
 <template>
   <div>
-    aaaaaaaaaaa
+    <div>
+      aaaaaa
+    </div>
+    <div>
+      <content></content>
+    </div>
   </div>
 </template>
 
