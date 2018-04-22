@@ -9,7 +9,7 @@
         name: 'Content',
         data() {
             return {
-                text: 'Hello Vue'
+                text: 'eeeeeeee'
             }
         },
         mounted() {

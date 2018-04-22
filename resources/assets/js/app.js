@@ -12,7 +12,7 @@ import VueRouter from 'vue-router'
 import Vue from 'vue'
 
 
-window.Vue = {Content};
+//window.Vue = {Content};
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -34,7 +34,6 @@ const router = new VueRouter({
   routes: [
       {
           path: '/',
-          name: 'first',
           component: {Content},
       }
   ]

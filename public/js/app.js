@@ -13894,7 +13894,7 @@ __webpack_require__(13);
 
 
 
-window.Vue = { Content: __WEBPACK_IMPORTED_MODULE_0__components_Content_vue___default.a };
+//window.Vue = {Content};
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -13915,7 +13915,6 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
   // コンポーネントオプションのオブジェクトでも構いません
   routes: [{
     path: '/',
-    name: 'first',
     component: { Content: __WEBPACK_IMPORTED_MODULE_0__components_Content_vue___default.a }
   }]
 });
@@ -47372,7 +47371,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     name: 'Content',
     data: function data() {
         return {
-            text: 'Hello Vue'
+            text: 'eeeeeeee'
         };
     },
     mounted: function mounted() {
