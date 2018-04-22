@@ -35,6 +35,13 @@ class ThemesRepository
 
     public function save($data){
         $data["close_time"] = $this->carbon->addHour(24);
-        return $this->themes->fill($data)->save();
+
+        if($this->themes->fill($data)->save()){
+            return $this->themes;
+        }else{
+            throw \ErrorException;
+        }
+
+
     }
 }
