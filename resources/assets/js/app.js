@@ -6,8 +6,13 @@
  */
 
 require('./bootstrap');
+import Content from './components/Content.vue'
+//import VueRouter from 'VueRouter'
+import VueRouter from 'vue-router'
+import Vue from 'vue'
 
-window.Vue = require('./components/List');
+
+window.Vue = {Content};
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -16,34 +21,22 @@ window.Vue = require('./components/List');
  */
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('list', require('./components/List.vue'));
-Vue.component('content', require('./components/Content.vue'));
-Vue.component('form', require('./components/Form.vue'));
+//Vue.component('list', require('./components/List.vue'));
+//Vue.component('content', require('./components/Content.vue'));
+//Vue.component('Content', {Content});
 
 
 // ルートオプションを渡してルーターインスタンスを生成します
-var router = new VueRouter({
+const router = new VueRouter({
   // 各ルートにコンポーネントをマッピングします
   // コンポーネントはVue.extend() によって作られたコンポーネントコンストラクタでも
   // コンポーネントオプションのオブジェクトでも構いません
   routes: [
-    {
-      path: '/list',
-      name: 'list',
-      component: {list},
-      children: [
-        {
-          path:'recomend',
-          name:'recomend',
-          component:content
-        }
-      ]
-    },
-    {
-      path: '/form',
-      name: 'form',
-      component: {form}
-    }
+      {
+          path: '/',
+          name: 'first',
+          component: {Content},
+      }
   ]
 })
 
