@@ -13878,9 +13878,11 @@ module.exports = __webpack_require__(43);
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Content_vue__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Content_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Content_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_App_vue__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_App_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_App_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_router__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -13890,11 +13892,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 __webpack_require__(13);
 
+
 //import VueRouter from 'VueRouter'
 
 
 
-__WEBPACK_IMPORTED_MODULE_2_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_3_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vue_router__["a" /* default */]);
 //window.Vue = {Content};
 
 /**
@@ -13907,31 +13910,32 @@ __WEBPACK_IMPORTED_MODULE_2_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 //Vue.component('list', require('./components/List.vue'));
 //Vue.component('content', require('./components/Content.vue'));
 //Vue.component('Content', {Content});
-
-
 // ルートオプションを渡してルーターインスタンスを生成します
-var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
+var router = new __WEBPACK_IMPORTED_MODULE_2_vue_router__["a" /* default */]({
     // 各ルートにコンポーネントをマッピングします
     // コンポーネントはVue.extend() によって作られたコンポーネントコンストラクタでも
     // コンポーネントオプションのオブジェクトでも構いません
     routes: [{
         path: '/',
         name: "Content",
-        component: { Content: __WEBPACK_IMPORTED_MODULE_0__components_Content_vue___default.a }
+        component: __WEBPACK_IMPORTED_MODULE_0__components_Content_vue___default.a
     }, {
         path: '/top',
         name: "top",
-        component: { Content: __WEBPACK_IMPORTED_MODULE_0__components_Content_vue___default.a }
+        component: __WEBPACK_IMPORTED_MODULE_0__components_Content_vue___default.a
     }, {
         path: '/users',
         name: "users",
-        component: { Content: __WEBPACK_IMPORTED_MODULE_0__components_Content_vue___default.a }
+        component: __WEBPACK_IMPORTED_MODULE_0__components_Content_vue___default.a
     }]
 });
 
 // ルーターのインスタンスをrootとなるVueインスタンスに渡します
-var app = new __WEBPACK_IMPORTED_MODULE_2_vue___default.a({
-    router: router
+var app = new __WEBPACK_IMPORTED_MODULE_3_vue___default.a({
+    router: router,
+    render: function render(h) {
+        return h(__WEBPACK_IMPORTED_MODULE_1__components_App_vue___default.a);
+    }
 }).$mount('#app');
 
 /***/ }),
@@ -50034,6 +50038,119 @@ if (inBrowser && window.Vue) {
 
 /* harmony default export */ __webpack_exports__["a"] = (VueRouter);
 
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(40)
+/* script */
+var __vue_script__ = __webpack_require__(59)
+/* template */
+var __vue_template__ = __webpack_require__(61)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/App.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-8142f38c", Component.options)
+  } else {
+    hotAPI.reload("data-v-8142f38c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "Start"
+});
+
+/***/ }),
+/* 60 */,
+/* 61 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "p",
+        [
+          _c("router-link", { attrs: { to: "/top" } }, [
+            _vm._v("トップページ")
+          ]),
+          _vm._v(" "),
+          _c("router-link", { attrs: { to: "/users" } }, [
+            _vm._v("ユーザー一覧ページ")
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("router-view")
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-8142f38c", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
