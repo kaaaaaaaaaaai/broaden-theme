@@ -8,7 +8,6 @@
 require('./bootstrap');
 import Content from './components/Content.vue'
 import Start from './components/App.vue'
-//import VueRouter from 'VueRouter'
 import VueRouter from 'vue-router'
 import Vue from 'vue'
 
