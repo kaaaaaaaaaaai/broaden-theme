@@ -1,11 +1,7 @@
 <template>
   <div>
-    <div>
-      aaaaaa
-    </div>
-    <div>
-      <content></content>
-    </div>
+  aaa
+
   </div>
 </template>
 

@@ -20,10 +20,10 @@ Vue.use(VueRouter)
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue'));
-//Vue.component('list', require('./components/List.vue'));
-//Vue.component('content', require('./components/Content.vue'));
-//Vue.component('Content', {Content});
+//  Vue.component ('contentTest', {
+//   template: '#contentText',
+// });
+
 // ルートオプションを渡してルーターインスタンスを生成します
 const router = new VueRouter({
   // 各ルートにコンポーネントをマッピングします
@@ -31,17 +31,11 @@ const router = new VueRouter({
   // コンポーネントオプションのオブジェクトでも構いません
   routes: [
       {
-          path: '/',
+          path: '/content',
           name:"Content",
-          component: Content,
-      },{
-          path: '/top',
-          name: "top",
-          component: Content,
-      },{
-          path: '/users',
-          name: "users",
-          component: Content,
+          // component: Content,
+          // props: ['title'],
+          template: '#contentText',
       },
   ]
 })
