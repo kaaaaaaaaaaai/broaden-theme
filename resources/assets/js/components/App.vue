@@ -1,10 +1,11 @@
 <template>
     <div>
         <p>
-            <router-link to="/top">トップページ</router-link>
-            <router-link to="/users">ユーザー一覧ページ</router-link>
+            <router-link to="/create">新規作成</router-link>
         </p>
-        <router-view></router-view>
+        <div class="container">
+          <router-view></router-view>
+        </div>
     </div>
 </template>
 

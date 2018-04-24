@@ -7,6 +7,7 @@
 
 require('./bootstrap');
 import Content from './components/Content.vue'
+import Create from './components/Create.vue'
 import Start from './components/App.vue'
 import VueRouter from 'vue-router'
 import Vue from 'vue'
@@ -34,15 +35,12 @@ const router = new VueRouter({
           path: '/',
           name:"Content",
           component: Content,
+          props:'themeContents'
       },{
-          path: '/top',
-          name: "top",
-          component: Content,
-      },{
-          path: '/users',
-          name: "users",
-          component: Content,
-      },
+          path: '/create',
+          name: "Create",
+          component: Create,
+      }
   ]
 })
 
