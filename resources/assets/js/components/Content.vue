@@ -14,6 +14,14 @@
     export default {
         name: 'Content',
         data() {
+          axios.get("/api/theme/recent")
+            .then(function(responce){
+              console.log(responce);
+            }).catch(function(error){
+              console.log(error);
+            });
+
+            //// TODO: return json as responce
             return {
               themeContents:[
                 {title:'sample',picture:'/sample'+'1'+'.jpg',time:'90'+"sec"},

@@ -12,6 +12,7 @@ import Start from './components/App.vue'
 import VueRouter from 'vue-router'
 import Vue from 'vue'
 import Item from "./components/Item.vue"
+import Axios from "axios"
 
 Vue.use(VueRouter)
 //window.Vue = {Content};
