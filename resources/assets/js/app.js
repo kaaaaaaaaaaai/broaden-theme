@@ -11,9 +11,13 @@ import Create from './components/Create.vue'
 import Start from './components/App.vue'
 import VueRouter from 'vue-router'
 import Vue from 'vue'
+import Item from "./components/Item.vue"
 
 Vue.use(VueRouter)
 //window.Vue = {Content};
+
+//globalにcomponentを追加する
+Vue.component('vue-item', Item)
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
