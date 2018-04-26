@@ -13,25 +13,20 @@
 <script>
     export default {
         name: 'Content',
-        data() {
+        data: function() {
+          return {
+            themeContents : [],
+          };
+        },
+        mounted() {
           axios.get("/api/theme/recent")
-            .then(function(responce){
+            .then((responce) => {
+              this.themeContents = responce.data;
               console.log(responce);
-            }).catch(function(error){
+            }).catch((error) => {
               console.log(error);
             });
 
-            //// TODO: return json as responce
-            return {
-              themeContents:[
-                {title:'sample',picture:'/sample'+'1'+'.jpg',time:'90'+"sec"},
-                {title:'sample2',picture:'/sample'+'1'+'.jpg',time:'90'+"sec"},
-                {title:'sample3',picture:'/sample'+'1'+'.jpg',time:'90'+"sec"},
-                {title:'sample4',picture:'/sample'+'1'+'.jpg',time:'90'+"sec"}
-              ]
-            }
-        },
-        mounted() {
             console.log('Component mounted.')
         }
     }

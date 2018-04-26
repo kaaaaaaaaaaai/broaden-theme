@@ -36137,18 +36137,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Content',
   data: function data() {
+    return {
+      themeContents: []
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
     axios.get("/api/theme/recent").then(function (responce) {
+      _this.themeContents = responce.data;
       console.log(responce);
     }).catch(function (error) {
       console.log(error);
     });
 
-    //// TODO: return json as responce
-    return {
-      themeContents: [{ title: 'sample', picture: '/sample' + '1' + '.jpg', time: '90' + "sec" }, { title: 'sample2', picture: '/sample' + '1' + '.jpg', time: '90' + "sec" }, { title: 'sample3', picture: '/sample' + '1' + '.jpg', time: '90' + "sec" }, { title: 'sample4', picture: '/sample' + '1' + '.jpg', time: '90' + "sec" }]
-    };
-  },
-  mounted: function mounted() {
     console.log('Component mounted.');
   }
 });
@@ -50971,23 +50973,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Item",
-  props: ["data"],
-  mounted: function mounted() {
-    // props で受け取ったら自分のデータと同じように this で使用できるようになる
-    console.log(this.data);
-  },
+    name: "Item",
+    props: ["data"],
+    mounted: function mounted() {
+        // props で受け取ったら自分のデータと同じように this で使用できるようになる
+        console.log(this.data);
+    },
 
-  methods: {
-    vote: function vote(event) {
-      axios.get("").then(function (responce) {
-        console.log(responce);
-        alert("投票しました");
-      }).catch(function (error) {
-        console.log(error);
-      });
+    methods: {
+        vote: function vote(event) {
+            axios.get("").then(function (responce) {
+                console.log(responce);
+                alert("投票しました");
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    },
+    created: function created() {
+        var _this = this;
+
+        var now = new Date();
+        var closeTimeSorce = this.data.close_time.replace(/\-/g, '/');
+        var target = new Date(closeTimeSorce);
+        var diff = (now.getTime() - target.getTime()) / (1000 * 60);
+
+        this.data.close_time = diff;
+
+        setInterval(function () {
+            _this.data.close_time--;
+            console.log(_this.data.close_time);
+        }, 60000);
     }
-  }
 });
 
 /***/ }),
@@ -51001,7 +51018,7 @@ var render = function() {
   return _c("div", [
     _c("img", {
       staticClass: "card-img-top",
-      attrs: { src: _vm.data.picture, alt: _vm.data.title }
+      attrs: { src: "/theme_img/" + _vm.data.id + ".jpg", alt: _vm.data.title }
     }),
     _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [
@@ -51014,7 +51031,9 @@ var render = function() {
         },
         [_vm._v("投票")]
       ),
-      _vm._v("\n    " + _vm._s(_vm.data.time) + "\n  ")
+      _vm._v(" "),
+      _c("p"),
+      _vm._v(_vm._s(_vm.data.close_time) + "\n  ")
     ])
   ])
 }
