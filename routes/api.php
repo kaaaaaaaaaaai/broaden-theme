@@ -21,4 +21,6 @@ Route::group(["prefix"=>"theme"], function(){
     Route::get("recent", "ThemeController@recent");
 
     Route::post("add", "ThemeController@add");
+
+    Route::post("vote/{id}", "ThemeController@vote")->where("id", "[0-9]+");
 });

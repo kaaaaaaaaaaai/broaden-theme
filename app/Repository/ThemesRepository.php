@@ -41,7 +41,10 @@ class ThemesRepository
         }else{
             throw \ErrorException;
         }
+    }
 
+    public function vote($id){
+        $this->themes->find($id)->increment("vote", 1);
 
     }
 }

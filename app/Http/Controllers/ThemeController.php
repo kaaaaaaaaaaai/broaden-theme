@@ -90,8 +90,8 @@ class ThemeController extends Controller
     }
 
 
-    public function vote(){
-
+    public function vote($id){
+        $this->themeRepository->vote($id);
     }
 
     public function disvote(){
