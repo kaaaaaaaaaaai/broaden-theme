@@ -50952,6 +50952,10 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var _this = this;
+
+//
+//
 //
 //
 //
@@ -50972,7 +50976,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       isExist: true,
-      isAlert: false,
+      isNormal: true,
+      isWarning: false,
+      isDanger: false,
       isSending: false
     };
   },
@@ -50992,11 +50998,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).catch(function (error) {
         console.log(error);
       });
+    },
+    //timeによって色を変える
+    chengeLimitColor: function chengeLimitColor(time) {
+      if (time < 60) {
+        _this.isNormal = false;
+        _this.isAlert = false;
+        _this.isDanger = true;
+      } else if (time < 300) {
+        _this.isNormal = false;
+        _this.isAlert = true;
+      }
     }
   },
   //残り時間を分単位で算出する
   created: function created() {
-    var _this = this;
+    var _this2 = this;
 
     var now = new Date();
     var closeTimeSorce = this.data.close_time.replace(/\-/g, '/');
@@ -51007,12 +51024,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     this.data.close_time = Math.round(diff);
 
     var timer = setInterval(function () {
-      _this.data.close_time--;
-      console.log(_this.data.close_time);
+      _this2.data.close_time--;
+      console.log(_this2.data.close_time);
 
-      if (_this.data.close_time == 0) {
+      chengeLimitColor(_this2.data.close_time);
+
+      if (_this2.data.close_time == 0) {
         clearInterval(timer);
-        _this.isExist = false;
+        _this2.isExist = false;
         console.log("end this theme");
       }
     }, 60000);
@@ -51060,10 +51079,22 @@ var render = function() {
           [_vm._v("投票")]
         ),
         _vm._v(" "),
-        _c("p", [_vm._v("投票数{{}}")]),
+        _c("p", [_vm._v("投票数 " + _vm._s(_vm.data.vote) + " ")]),
         _vm._v(" "),
-        _c("p", { class: { "text-danger": _vm.isAlert } }, [
-          _vm._v("残り" + _vm._s(_vm.data.close_time) + "min")
+        _c("p", [
+          _vm._v("\n      残り"),
+          _c(
+            "strong",
+            {
+              class: {
+                "text-success": _vm.isNormal,
+                "text-warning": _vm.isWarning,
+                "text-danger": _vm.isDanger
+              }
+            },
+            [_vm._v(_vm._s(_vm.data.close_time))]
+          ),
+          _vm._v("min\n    ")
         ])
       ])
     ]
