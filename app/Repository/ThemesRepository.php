@@ -29,7 +29,7 @@ class ThemesRepository
      * @return Themes
      */
     public function getRecent($limit){
-        return $this->themes->aliveTheme($this->carbon)->take($limit)->get();
+        return $this->themes->aliveTheme($this->carbon)->take($limit)->paginate(10);
     }
 
 
