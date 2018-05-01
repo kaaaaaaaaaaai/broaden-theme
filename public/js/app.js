@@ -36145,7 +36145,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     var _this = this;
 
     axios.get("/api/theme/recent").then(function (responce) {
-      _this.themeContents = responce.data;
+      _this.themeContents = responce.data.data;
       console.log(responce);
     }).catch(function (error) {
       console.log(error);
@@ -36243,6 +36243,14 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var _this = this;
+
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -36272,14 +36280,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'Create',
-    data: function data() {
-        return;
-        "OK";
+  name: 'Create',
+  data: function data() {
+    return {
+      errors: [],
+      title: null,
+      charctar: null,
+      charctarList: [],
+      seen: null
+    };
+  },
+
+  //フォームのバリデーションチェック
+  methods: {
+    checkForm: function checkForm(e) {
+      _this.errors = [];
+
+      if (!_this.title) {
+        _this.errors.push("作品名は必要です");
+        e.preventDefault();
+      }
+
+      if (!_this.charctar) {
+        _this.errors.push("キャラは最低一人以上必要です");
+        e.preventDefault();
+      }
+
+      if (!Object.keys(_this.errors).length) {
+        console.log("no matter");
+        return true;
+      }
     },
-    mounted: function mounted() {
-        console.log('Create mounted.');
+    createCharctarList: function createCharctarList(e) {
+      _this.charctarList = _this.charctar.split(",");
+
+      if (Object.keys(_this.charctarList).length > 3) {
+        _this.errors = [];
+        _this.errors.push("キャラ名は３つまでにしてください");
+      }
     }
+  },
+  mounted: function mounted() {
+    console.log('Create mounted.');
+  }
 });
 
 /***/ }),
@@ -36290,28 +36333,61 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("h4", [_vm._v("\n    お題の作成\n  ")]),
-      _vm._v(" "),
-      _c("form", { attrs: { action: "index.html", method: "post" } }, [
+  return _c("div", [
+    _c("h4", [_vm._v("\n    お題の作成\n  ")]),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        attrs: { id: "createForm", action: "/api/theme/add", method: "post" },
+        on: { submit: _vm.checkForm }
+      },
+      [
+        _vm.errors.length
+          ? _c("div", { staticClass: "row" }, [
+              _c("b", [
+                _vm._v("以下の部分についてフォームを確認してください：")
+              ]),
+              _vm._v(" "),
+              _c(
+                "ul",
+                _vm._l(_vm.errors, function(error) {
+                  return _c("li", [_vm._v(" " + _vm._s(error) + " ")])
+                })
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("label", { attrs: { for: "title" } }, [_vm._v("作品名")]),
           _vm._v(" "),
           _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.title,
+                expression: "title"
+              }
+            ],
             staticClass: "form-control",
             attrs: {
               type: "text",
               id: "title",
+              name: "title",
               placeholder: "",
               value: "",
               required: ""
+            },
+            domProps: { value: _vm.title },
+            on: {
+              mouseover: _vm.createCharctarList,
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.title = $event.target.value
+              }
             }
           })
         ]),
@@ -36320,13 +36396,31 @@ var staticRenderFns = [
           _c("label", { attrs: { for: "charctar" } }, [_vm._v("キャラ")]),
           _vm._v(" "),
           _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.charctar,
+                expression: "charctar"
+              }
+            ],
             staticClass: "form-control",
             attrs: {
               type: "text",
               name: "charctar",
+              id: "charctar",
               value: "",
               placeholder: "",
               required: ""
+            },
+            domProps: { value: _vm.charctar },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.charctar = $event.target.value
+              }
             }
           })
         ]),
@@ -36335,29 +36429,55 @@ var staticRenderFns = [
           _c("label", { attrs: { for: "seen" } }, [_vm._v("シチュエーション")]),
           _vm._v(" "),
           _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.seen,
+                expression: "seen"
+              }
+            ],
             staticClass: "form-control",
             attrs: {
               type: "textarea",
               name: "seen",
+              id: "seen",
               value: "",
               placeholder: ""
+            },
+            domProps: { value: _vm.seen },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.seen = $event.target.value
+              }
             }
           })
         ]),
         _vm._v(" "),
-        _c("div", [
-          _c("hr", { staticClass: "mb-4" }),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-primary btn-lg btn-block",
-              attrs: { type: "submit", name: "createTheme" }
-            },
-            [_vm._v("お題を作る")]
-          )
-        ])
-      ])
+        _vm._m(0)
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("hr", { staticClass: "mb-4" }),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary btn-lg btn-block",
+          attrs: { type: "submit", name: "createTheme", id: "createTheme" }
+        },
+        [_vm._v("お題を作る")]
+      )
     ])
   }
 ]
@@ -50952,7 +51072,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-var _this = this;
+var _this3 = this;
 
 //
 //
@@ -50990,25 +51110,19 @@ var _this = this;
   methods: {
     //投票apiに接続する
     vote: function vote(event) {
-      axios.get("/api/theme/vote", {
-        transformResponse: [function () {}]
+      var _this = this;
+
+      axios.get("/api/theme/vote/" + this.data.id, {
+        transformResponse: [function () {
+          _this.isSending = true;
+        }]
       }).then(function (responce) {
         console.log(responce);
         alert("投票しました");
+        _this.isSending = false;
       }).catch(function (error) {
         console.log(error);
       });
-    },
-    //timeによって色を変える
-    chengeLimitColor: function chengeLimitColor(time) {
-      if (time < 60) {
-        _this.isNormal = false;
-        _this.isAlert = false;
-        _this.isDanger = true;
-      } else if (time < 300) {
-        _this.isNormal = false;
-        _this.isAlert = true;
-      }
     }
   },
   //残り時間を分単位で算出する
@@ -51035,6 +51149,17 @@ var _this = this;
         console.log("end this theme");
       }
     }, 60000);
+  },
+  //timeによって色を変える
+  chengeLimitColor: function chengeLimitColor(time) {
+    if (time < 60) {
+      _this3.isNormal = false;
+      _this3.isAlert = false;
+      _this3.isDanger = true;
+    } else if (time < 300) {
+      _this3.isNormal = false;
+      _this3.isAlert = true;
+    }
   }
 });
 

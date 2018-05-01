@@ -33,29 +33,19 @@
         methods: {
           //投票apiに接続する
           vote: function(event){
-            axios.get("/api/theme/vote",{
+            axios.get(`/api/theme/vote/${this.data.id}`,{
               transformResponse: [() =>{
-
+                this.isSending = true;
               }]
             })
               .then((responce) => {
                 console.log(responce);
                 alert("投票しました");
+                this.isSending = false;
               }).catch((error) => {
                 console.log(error);
               });
           },
-          //timeによって色を変える
-          chengeLimitColor:(time) => {
-            if(time < 60){
-              this.isNormal = false;
-              this.isAlert  = false;
-              this.isDanger = true;
-            }else if(time < 300){
-              this.isNormal = false;
-              this.isAlert  = true;
-            }
-          }
         },
         //残り時間を分単位で算出する
         created: function() {
@@ -79,6 +69,17 @@
                   console.log("end this theme");
                 }
             },60000);
+        },
+        //timeによって色を変える
+        chengeLimitColor:(time) => {
+          if(time < 60){
+            this.isNormal = false;
+            this.isAlert  = false;
+            this.isDanger = true;
+          }else if(time < 300){
+            this.isNormal = false;
+            this.isAlert  = true;
+          }
         }
     }
 </script>
