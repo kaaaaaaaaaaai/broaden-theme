@@ -22,9 +22,9 @@
           axios.get("/api/theme/recent")
             .then((responce) => {
               this.themeContents = responce.data;
-              console.log(responce);
+                console.log(responce);
             }).catch((error) => {
-              console.log(error);
+                console.log(error);
             });
 
             console.log('Component mounted.')

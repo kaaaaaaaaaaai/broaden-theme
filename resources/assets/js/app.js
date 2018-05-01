@@ -26,10 +26,6 @@ Vue.component('vue-item', Item)
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue'));
-//Vue.component('list', require('./components/List.vue'));
-//Vue.component('content', require('./components/Content.vue'));
-//Vue.component('Content', {Content});
 // ルートオプションを渡してルーターインスタンスを生成します
 const router = new VueRouter({
   // 各ルートにコンポーネントをマッピングします
