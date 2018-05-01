@@ -4,19 +4,20 @@ module.exports = {
 		dir:'client/htdocs'
     },
     head: {
-        titleTemplate: '%s - Nuxt.js',
+        titleTemplate: '%seeee - Nuxt.js',
         meta: [
             { charset: 'utf-8' },
             { name: 'viewport', content: 'width=device-width, initial-scale=1' },
             { hid: 'description', name: 'description', content: 'Meta description' }
+        ],
+        script: [
+            // { src: '~/static/app.js' }
+            '~/static/app.js'
         ]
     },
     css:[
 	    '~/static/app.css'
     ],
-    // plugins:[
-    //     '~/static/app.js'
-    // ],
     render: {
         bundleRenderer: {
             shouldPreload: (file, type) => {
@@ -27,5 +28,4 @@ module.exports = {
     build: {
         vendor: ['axios']
     }
-
 }

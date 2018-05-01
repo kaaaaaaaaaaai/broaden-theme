@@ -14,7 +14,7 @@
 <script>
     export default {
 
-        name: "Item",
+        name: "VueItem",
         props: ["data"],
         data:() => {
           return{
