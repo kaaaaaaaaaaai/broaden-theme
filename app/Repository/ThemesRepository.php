@@ -44,7 +44,16 @@ class ThemesRepository
     }
 
     public function vote($id){
-        $this->themes->find($id)->increment("vote", 1);
+        $data = $this->themes->find($id);
 
+        #dataがなければThr err
+
+        ##vote +1
+        $data->increment("vote", 1);
+
+        $data->close_time = Carbon::parse($data->close_time)->addHour();
+        $data->save();
+
+        return $data;
     }
 }
