@@ -11,8 +11,9 @@
 </template>
 
 <script>
-    Vue.component('vue-item', Item)
+    //Vue.component('vue-item', Item)
     import axios from "axios"
+    import VueItem from "../components/Item.vue"
     export default {
         layout:"base",
         name: 'Content',
@@ -20,6 +21,9 @@
             return {
                 themeContents : [],
             };
+        },
+        components :{
+            VueItem
         },
         mounted() {
             axios.get("http://localhost:8000/api/theme/recent")
