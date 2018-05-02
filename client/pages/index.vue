@@ -30,6 +30,10 @@
         mounted() {
             axios.get(process.env.apiUrl + "/api/theme/recent")
                 .then((responce) => {
+                    //respons Dataの加工 本当ならどこかに切り出したい。
+                    responce.data.data.forEach(function(i){
+                        i["thumb_url"] = process.env.apiUrl + '/theme_img/' + i.id + '.jpg'
+                    });
                     this.themeContents = responce.data.data;
                     console.log(responce);
                 }).catch((error) => {
