@@ -13,8 +13,8 @@
             </div>
         </section>
         <div id="themeList">
-            <div class="card-group">
-                <div v-for="theme in themeContents" class="card col-md-3">
+            <div class="columns is-multiline is-mobile">
+                <div v-for="theme in themeContents" class="column is-one-quarter">
                     <vue-item :data="theme"></vue-item>
                 </div>
             </div>

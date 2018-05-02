@@ -1,4 +1,5 @@
 <template>
+  <div class="card">
   <div v-show="isExist">
     <img class="card-img-top" :src="data.thumb_url" :alt="data.title">
     <div class="card-body">
@@ -10,6 +11,7 @@
         残り<strong v-bind:class="{'text-success':isNormal,'text-warning':isWarning,'text-danger': isDanger}">{{ data.close_time }}</strong>min
       </p>
     </div>
+  </div>
   </div>
 </template>
 
