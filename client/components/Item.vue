@@ -49,6 +49,16 @@
                     console.log(error);
                 });
             },
+            chengeLimitColor(time) {
+                if(time < 60){
+                    this.isNormal = false;
+                    this.isAlert  = false;
+                    this.isDanger = true;
+                }else if(time < 3300){
+                    this.isNormal = false;
+                    this.isAlert  = true;
+                }
+            }
         },
         //残り時間を分単位で算出する
         created: function() {
@@ -64,25 +74,15 @@
                 this.data.close_time--;
                 console.log(this.data.close_time);
 
-                chengeLimitColor(this.data.close_time);
+                this.chengeLimitColor(this.data.close_time);
 
                 if(this.data.close_time == 0){
                     clearInterval(timer);
                     this.isExist = false;
                     console.log("end this theme");
                 }
-            },6000);
+            },600);
             //timeによって色を変える
-            function chengeLimitColor(time) {
-                if(time < 60){
-                    this.isNormal = false;
-                    this.isAlert  = false;
-                    this.isDanger = true;
-                }else if(time < 300){
-                    this.isNormal = false;
-                    this.isAlert  = true;
-                }
-            }
         },
     }
 </script>
