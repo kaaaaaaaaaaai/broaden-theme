@@ -13,11 +13,11 @@
       </div>
       <div class="row">
         <label for="title">作品名</label>
-        <input type="text" class="form-control" id="title" name="title" v-model="title" placeholder="" value="" required @mouseover="createCharctarList" />
+        <input type="text" class="form-control" id="title" name="title" v-model="title" placeholder="" value="" required />
       </div>
       <div class="row">
-        <label for="charctar">キャラ</label>
-        <input type="text" name="charctar" id="charctar" class="form-control" v-model="charctar" value="" placeholder="" required />
+        <label for="character">キャラ</label>
+        <input type="text" name="character" id="character" class="form-control" value="" placeholder="" required v-model="character"/>
       </div>
       <div class="row">
         <label for="seen">シチュエーション</label>
@@ -39,10 +39,22 @@
             return{
                 errors      : [],
                 title       : null,
-                charctar    : null,
-                charctarList: [],
+                character    : "",
+                characterList: [],
                 seen        : null,
             };
+        },
+        watch:{
+          character:function(val){
+              console.log(val);
+              console.log(this.character);
+              this.characterList = val.split(",");
+
+              if(Object.keys(this.characterList).length > 3){
+                  this.errors = [];
+                  this.errors.push("キャラ名は３つまでにしてください");
+              }
+          }
         },
         //フォームのバリデーションチェック
         methods:{
@@ -54,7 +66,7 @@
                     e.preventDefault();
                 }
 
-                if(!this.charctar){
+                if(!this.character){
                     this.errors.push("キャラは最低一人以上必要です");
                     e.preventDefault();
                 }
@@ -64,16 +76,6 @@
                     return true;
                 }
             },
-            createCharctarList:(e) => {
-                this.charctarList = this.charctar.split(",");
-
-                if(Object.keys(this.charctarList).length > 3){
-                    this.errors = [];
-                    this.errors.push("キャラ名は３つまでにしてください");
-                }
-
-
-            }
         },
         mounted() {
             console.log('Create mounted.')
