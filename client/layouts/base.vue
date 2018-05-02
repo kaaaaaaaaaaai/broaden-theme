@@ -1,10 +1,6 @@
 <template>
     <div>
-        <nav class="navbar" role="navigation" aria-label="main navigation">
-            <div class="navbar-brand">
-                <!-- navbar items, navbar burger... -->
-            </div>
-        </nav>
+        <navbar/>
         <p>
             <a href="/create">新規作成</a>
 
@@ -26,3 +22,12 @@
         </footer>
     </div>
 </template>
+
+<script>
+    import Navbar from "../components/navbar.vue"
+    export default {
+        components:{
+            Navbar
+        }
+    }
+</script>
