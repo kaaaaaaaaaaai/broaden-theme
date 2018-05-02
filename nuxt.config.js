@@ -32,6 +32,9 @@ module.exports = {
     //  cache: true,
     env:{
         apiUrl: process.env.FRONT_API_URL || 'http://api.domain.com',
-    }
-
+    },
+    modules: [
+        // Simple usage
+        'nuxt-buefy'
+    ]
 }

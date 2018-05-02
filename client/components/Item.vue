@@ -18,8 +18,8 @@
     export default {
         name: "Item",
         props: ["data"],
-        data:() => {
-            return{
+        data: function() {
+            return {
                 isExist:    true,
                 isNormal:   true,
                 isWarning:  false,
@@ -69,18 +69,18 @@
                     this.isExist = false;
                     console.log("end this theme");
                 }
-            },60000);
-        },
-        //timeによって色を変える
-        chengeLimitColor:(time) => {
-            if(time < 60){
-                this.isNormal = false;
-                this.isAlert  = false;
-                this.isDanger = true;
-            }else if(time < 300){
-                this.isNormal = false;
-                this.isAlert  = true;
+            },6000);
+            //timeによって色を変える
+            function chengeLimitColor(time) {
+                if(time < 60){
+                    this.isNormal = false;
+                    this.isAlert  = false;
+                    this.isDanger = true;
+                }else if(time < 300){
+                    this.isNormal = false;
+                    this.isAlert  = true;
+                }
             }
-        }
+        },
     }
 </script>
