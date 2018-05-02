@@ -1,6 +1,6 @@
 <template>
   <div v-show="isExist">
-    <img class="card-img-top" :src="'/theme_img/'+data.id+'.jpg'" :alt="data.title">
+    <img class="card-img-top" :src="'http://localhost:8000/theme_img/'+data.id+'.jpg'" :alt="data.title">
     <div class="card-body">
       <button type="button" name="button" class="btn btn-primary btn-block"
               v-bind:class="{'disabled': isSending}"
@@ -34,7 +34,7 @@
         methods: {
             //投票apiに接続する
             vote: function(event){
-                axios.post(`http://localhost:8000/api/theme/vote/${this.data.id}`,{
+                axios.post(process.env.apiUrl+`/api/theme/vote/${this.data.id}`,{
                     transformResponse: [() =>{
                         this.isSending = true;
                     }]

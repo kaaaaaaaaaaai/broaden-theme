@@ -24,6 +24,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
+        "dotenv": "^5.0.1",
         "npm": "^6.0.0",
         "nuxt": "^1.4.0",
         "vue-router": "^3.0.1"

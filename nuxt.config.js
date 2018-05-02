@@ -1,3 +1,4 @@
+require('dotenv').config();
 module.exports = {
 	srcDir: 'client/',
 	generate: {
@@ -28,6 +29,9 @@ module.exports = {
     build: {
         vendor: ['axios']
     },
-    //  cache: true
+    //  cache: true,
+    env:{
+        apiUrl: process.env.FRONT_API_URL || 'http://api.domain.com',
+    }
 
 }

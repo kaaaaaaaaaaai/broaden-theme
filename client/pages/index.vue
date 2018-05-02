@@ -14,6 +14,7 @@
     //Vue.component('vue-item', Item)
     import axios from "axios"
     import VueItem from "../components/Item.vue"
+
     export default {
         layout:"base",
         name: 'Content',
@@ -27,7 +28,7 @@
             VueItem
         },
         mounted() {
-            axios.get("http://localhost:8000/api/theme/recent")
+            axios.get(process.env.apiUrl + "/api/theme/recent")
                 .then((responce) => {
                     this.themeContents = responce.data.data;
                     console.log(responce);
