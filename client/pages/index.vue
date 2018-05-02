@@ -22,6 +22,7 @@
                 themeContents : [],
             };
         },
+        //キャメルケースで登録して使うときはスネークケースらしい
         components :{
             VueItem
         },
@@ -38,3 +39,4 @@
         }
     }
 </script>
+
