@@ -1,10 +1,19 @@
 <template>
     <div>
         <navbar/>
-        <p>
-            <a href="/create">新規作成</a>
+        <section class="hero is-primary">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        ようこそ！
+                    </h1>
+                    <h2 class="subtitle">
+                        お題を投稿しましょう！
+                    </h2>
+                </div>
+            </div>
+        </section>
 
-        </p>
         <div class="container is-fluid">
             <nuxt/>
         </div>

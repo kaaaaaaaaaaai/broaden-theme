@@ -11,7 +11,7 @@
         <div class="navbar-menu" id="navMenu" :class="{'is-active': isMenuActive}">
             <div class="navbar-end">
                 <nuxt-link to="/" class="navbar-item">トップ</nuxt-link>
-                <nuxt-link to="/" class="navbar-item">お題作成</nuxt-link>
+                <nuxt-link to="/create" class="navbar-item">お題作成</nuxt-link>
                 <nuxt-link to="/about" class="navbar-item">About Lit</nuxt-link>
                 <nuxt-link to="/contact" class="navbar-item">ლ(´ڡ`ლ)</nuxt-link>
             </div>
