@@ -4,7 +4,7 @@
       お題の作成
     </h4>
 
-    <form class="" id="createForm" @submit="checkForm" action="/api/theme/add" method="post">
+    <form class="" id="createForm">
       <div class="row" v-if="errors.length">
         <b>以下の部分についてフォームを確認してください：</b>
         <ul>
@@ -19,13 +19,16 @@
         <label for="character">キャラ</label>
         <input type="text" name="character" id="character" class="form-control" value="" placeholder="" required v-model="character"/>
       </div>
+      <div class="row tags">
+        <span class="tag is-info" v-for="tag in characterList"> {{ tag }} </span>
+      </div>
       <div class="row">
         <label for="seen">シチュエーション</label>
         <input type="textarea" name="seen" id="seen" class="form-control" v-model="seen" value="" placeholder="" />
       </div>
       <div>
         <hr class="mb-4">
-        <button type="submit" name="createTheme" id="createTheme" class="btn btn-primary btn-lg btn-block">お題を作る</button>
+        <button type="button" name="createTheme" id="createTheme" class="btn btn-primary btn-lg btn-block" v-on:click="upload">お題を作る</button>
       </div>
     </form>
   </div>
@@ -58,23 +61,23 @@
         },
         //フォームのバリデーションチェック
         methods:{
-            checkForm:(e) => {
-                this.errors = [];
+            upload:() => {
+                let formData = new FormData();
 
-                if(!this.title){
-                    this.errors.push("作品名は必要です");
-                    e.preventDefault();
-                }
+                formData.appnd('character_text',this.character);
+                formData.appnd('product',this.title);
+                formData.appnd('scene',this.seen);
 
-                if(!this.character){
-                    this.errors.push("キャラは最低一人以上必要です");
-                    e.preventDefault();
-                }
+                axios
+                   .post('/api/theme/add', formData)
+                   .then(function(response) {
+                        console.log(responce);
+                        this.$router.push("/");
+                   })
+                   .catch(function(error) {
+                        console.log(error);
+                   })
 
-                if(!Object.keys(this.errors).length){
-                    console.log("no matter");
-                    return true;
-                }
             },
         },
         mounted() {
