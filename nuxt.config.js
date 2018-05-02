@@ -28,4 +28,6 @@ module.exports = {
     build: {
         vendor: ['axios']
     },
+    //  cache: true
+
 }

@@ -36,6 +36,8 @@
             </div>
         </nav>
         <p>
+            <a href="/create">新規作成</a>
+
         </p>
         <div class="container">
             <nuxt/>
