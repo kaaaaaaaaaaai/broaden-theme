@@ -13,12 +13,10 @@ module.exports = {
         ],
         script: [
             // { src: '~/static/app.js' }
-            '~/static/app.js'
+            { src: 'https://use.fontawesome.com/releases/v5.0.7/js/all.js', defer: true }
+
         ]
     },
-    css:[
-	    '~/static/app.css'
-    ],
     render: {
         bundleRenderer: {
             shouldPreload: (file, type) => {
