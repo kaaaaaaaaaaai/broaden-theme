@@ -161,7 +161,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Pbmedia\LaravelFFMpeg\FFMpegServiceProvider::class,
-
+        Barryvdh\Cors\ServiceProvider::class,
     ],
 
     /*
