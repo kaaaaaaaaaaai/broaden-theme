@@ -8,7 +8,6 @@
  */
 
 define('LARAVEL_START', microtime(true));
-header("Access-Control-Allow-Origin: http://localhost:3000");
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader
