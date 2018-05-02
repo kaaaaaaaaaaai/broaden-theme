@@ -21,8 +21,13 @@
         mounted() {
           axios.get("/api/theme/recent")
             .then((responce) => {
+<<<<<<< HEAD
               this.themeContents = responce.data;
                 console.log(responce);
+=======
+              this.themeContents = responce.data.data;
+              console.log(responce);
+>>>>>>> master
             }).catch((error) => {
                 console.log(error);
             });

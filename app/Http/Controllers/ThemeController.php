@@ -91,7 +91,9 @@ class ThemeController extends Controller
 
 
     public function vote($id){
-        $this->themeRepository->vote($id);
+        $data = $this->themeRepository->vote($id);
+
+        return $data;
     }
 
     public function disvote(){
