@@ -35,6 +35,8 @@
 </template>
 
 <script>
+    import axios from "axios";
+
     export default {
         layout:"base",
         name: 'Create',
@@ -61,22 +63,21 @@
         },
         //フォームのバリデーションチェック
         methods:{
-            upload:() => {
+            upload(){
                 let formData = new FormData();
 
-                formData.appnd('character_text',this.character);
-                formData.appnd('product',this.title);
-                formData.appnd('scene',this.seen);
+                formData.append('character_text',this.character);
+                formData.append('product',this.title);
+                formData.append('scene',this.seen);
 
-                axios
-                   .post('/api/theme/add', formData)
-                   .then(function(response) {
-                        console.log(responce);
+                axios.post(process.env.apiUrl + '/api/theme/add', formData)
+                   .then((response) => {
+                        console.log(response);
                         this.$router.push("/");
                    })
-                   .catch(function(error) {
+                   .catch((error) => {
                         console.log(error);
-                   })
+                   });
 
             },
         },
