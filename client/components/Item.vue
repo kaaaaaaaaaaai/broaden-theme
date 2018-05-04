@@ -81,7 +81,7 @@
                     this.isExist = false;
                     console.log("end this theme");
                 }
-            },600);
+            },6000);
             //timeによって色を変える
         },
     }
