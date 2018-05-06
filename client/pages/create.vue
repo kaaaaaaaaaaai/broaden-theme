@@ -1,48 +1,50 @@
 <template>
-  <div class="columns is-multiline is-centered">
-    <h1 class="title column is-12">
-      お題の作成
-    </h1>
+  <section class="section">
+    <div class="container">
 
-    <div class="column is-8">
-      <form class="" id="createForm">
-        <div class="row" v-if="errors.length">
-          <b>以下の部分についてフォームを確認してください：</b>
-          <ul>
-            <li v-for="error in errors"> {{ error }} </li>
-          </ul>
-        </div>
-        <div class="field">
-          <div class="control">
-            <label for="title" class="label">作品名</label>
-            <input type="input" class="input" id="title" name="title" v-model="title" placeholder="作品名" value="" required />
+        <div class="columns is-multiline is-centered">
+          <div class="column is-8">
+            <form class="" id="createForm">
+              <div class="field" v-if="errors.length">
+                <b>以下の部分についてフォームを確認してください：</b>
+                <ul>
+                  <li v-for="error in errors"> {{ error }} </li>
+                </ul>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <label for="title" class="label">作品名</label>
+                  <input type="input" class="input" id="title" name="title" v-model="title" placeholder="作品名" value="" required />
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <label for="character" class="label">キャラ</label>
+                  <input type="input" name="character" id="character" class="input" value="" placeholder="「,」区切りで3キャラまで" required v-model="character"/>
+                  <div class="control tags">
+                    <span class="tag is-info" v-for="tag in characterList"> {{ tag }} </span>
+                  </div>
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <label for="seen" class="label">シチュエーション</label>
+                  <textarea type="textarea" name="seen" id="seen" class="textarea" v-model="seen" value="" placeholder="シチュや設定など" />
+                </div>
+              </div>
+              <div class="field">
+                <div class="control has-text-centered">
+                  <hr class="mb-4">
+                  <button type="button" name="createTheme" id="createTheme" class="button is-success is-fullwidth is-medium" v-on:click="upload"><strong>作成する</strong></button>
+                </div>
+              </div>
+            </form>
           </div>
+
         </div>
-        <div class="field">
-          <div class="control">
-            <label for="character" class="label">キャラ</label>
-            <input type="input" name="character" id="character" class="input" value="" placeholder="「,」区切りで3キャラまで" required v-model="character"/>
-            <div class="control tags">
-              <span class="tag is-info" v-for="tag in characterList"> {{ tag }} </span>
-            </div>
-          </div>
-        </div>
-        <div class="field">
-          <div class="control">
-            <label for="seen" class="label">シチュエーション</label>
-            <textarea type="textarea" name="seen" id="seen" class="textarea" v-model="seen" value="" placeholder="シチュや設定など" />
-          </div>
-        </div>
-        <div class="field">
-          <div class="control has-text-centered">
-            <hr class="mb-4">
-            <button type="button" name="createTheme" id="createTheme" class="button is-success is-fullwidth" v-on:click="upload">お題を作る</button>
-          </div>
-        </div>
-      </form>
     </div>
+  </section>
 
-  </div>
 </template>
 
 <script>
