@@ -15,7 +15,6 @@
 
 <script>
     //Vue.component('vue-item', Item)
-    import axios from "axios"
     import VueItem from "../components/Item.vue"
 
     export default {
@@ -31,14 +30,14 @@
             VueItem
         },
         mounted() {
-            axios.get(process.env.apiUrl + "/api/theme/recent")
-                .then((responce) => {
+            this.$axios.$get("api/theme/recent")
+                .then((response) => {
                     //respons Dataの加工 本当ならどこかに切り出したい。
-                    responce.data.data.forEach(function(i){
+                    response.data.forEach(function(i){
                         i["thumb_url"] = process.env.apiUrl + '/theme_img/' + i.id + '.jpg'
                     });
-                    this.themeContents = responce.data.data;
-                    console.log(responce);
+                    this.themeContents = response.data;
+                    console.log(response);
                 }).catch((error) => {
                 console.log(error);
             });
