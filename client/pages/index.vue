@@ -30,19 +30,16 @@
     export default {
         layout:"base",
         name: 'Content',
-<<<<<<< Updated upstream
         computed: mapState([
             'Contents',
             'popularContents'
         ]),
-=======
+
         data: function() {
             return {
-                themeContents : [],
                 contentInfo : []
             };
         },
->>>>>>> Stashed changes
         //キャメルケースで登録して使うときはスネークケースらしい
         components :{
             VueItem,
