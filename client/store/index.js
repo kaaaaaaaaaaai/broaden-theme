@@ -5,19 +5,20 @@ const store = () => new Vuex.Store({
         Contents: []
     },
     mutations: {
-
+        SET_THUMBNAIL_URL(state){
+            state.Contents.forEach((c) => {
+                c.thumb_url = process.env.apiUrl + '/theme_img/' + c.id + '.jpg'
+            })
+        }
     },
     getters:{
-        allContents(state) {
-            return state.Contents
-        },
     },
     actions: {
         GET_RECENT_THEME({commit, state, getters}, {page}){
             const data = this.$axios.$get("api/theme/recent")
                 .then((response) => {
                     state.Contents = response.data
-                    console.log(state.Contents)
+                    commit("SET_THUMBNAIL_URL")
             });
 
         }
