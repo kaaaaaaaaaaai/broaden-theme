@@ -10,6 +10,16 @@
                 </div>
             </div>
         </div>
+        <div class="container">
+            <h1 class="title">Newest</h1>
+            <div>
+                <div class="columns is-multiline is-mobile is-centered">
+                    <div v-for="theme in popularContents" class="column is-3">
+                        <vue-item :data="theme"></vue-item>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -21,11 +31,11 @@
         layout:"base",
         name: 'Content',
         computed: mapState([
-            'Contents'
+            'Contents',
+            'popularContents'
         ]),
         data: function() {
             return {
-                themeContents : [],
                 contentInfo : []
             };
         },
@@ -35,6 +45,7 @@
         },
         mounted() {
             this.$store.dispatch("GET_RECENT_THEME",{page:1})
+            this.$store.dispatch("GET_POPULAR_THEME",{page:1})
         },
         methods :{
 
