@@ -29,7 +29,12 @@ class ThemesRepository
      * @return Themes
      */
     public function getRecent($limit){
-        return $this->themes->aliveTheme($this->carbon)->take($limit)->paginate(10);
+        $data = $this->themes->aliveTheme($this->carbon)->take($limit)->paginate(10);
+
+        foreach ($data as $d){
+            $d->diffInMinutes = $d->diff_minutes_from_now;
+        }
+        return $data;
     }
 
 
@@ -51,7 +56,7 @@ class ThemesRepository
         ##vote +1
         $data->increment("vote", 1);
 
-        $data->close_time = Carbon::parse($data->close_time)->addHour();
+        $data->close_time = Carbon::parse($data->close_time)->addHour()->format("Y-m-d h:m:i");
         $data->save();
 
         return $data;
