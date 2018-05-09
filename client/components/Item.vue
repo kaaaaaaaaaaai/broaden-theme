@@ -1,22 +1,26 @@
 <template>
-  <div class="card">
-  <div v-show="isExist">
-    <img class="card-img-top" :src="data.thumb_url" :alt="data.title">
-    <div class="card-body">
-      <button type="button" name="button" class="btn btn-primary btn-block"
-              v-bind:class="{'disabled': isSending}"
-              v-on:click="vote">投票</button>
-      <p>投票数 {{ data.vote }} </p>
-      <p>
-        残り<strong v-bind:class="{'text-success':isNormal,'text-warning':isWarning,'text-danger': isDanger}">{{ data.close_time }}</strong>min
-      </p>
+  <div class="card" @click="isCardModalActive = true">
+    <div v-show="isExist">
+      <img class="card-img-top" :src="data.thumb_url" :alt="data.title">
+      <div class="card-body">
+        <button type="button" name="button" class="btn btn-primary btn-block"
+                v-bind:class="{'disabled': isSending}"
+                v-on:click="vote">投票</button>
+        <p>投票数 {{ data.vote }} </p>
+        <p>
+          残り<strong v-bind:class="{'text-success':isNormal,'text-warning':isWarning,'text-danger': isDanger}">{{ data.close_time }}</strong>min
+        </p>
+      </div>
     </div>
-  </div>
+    <b-modal :active.sync="isCardModalActive" has-modal-card>
+            <modal></modal>
+    </b-modal>
   </div>
 </template>
 
 <script>
     import axios from 'axios';
+    import Modal from "../components/Modal.vue"
     export default {
         name: "Item",
         props: ["data"],
@@ -26,8 +30,12 @@
                 isNormal:   true,
                 isWarning:  false,
                 isDanger:   false,
-                isSending:  false
+                isSending:  false,
+                isCardModalActive: false
             }
+        },
+        components :{
+            Modal
         },
         mounted() {
             // props で受け取ったら自分のデータと同じように this で使用できるようになる
