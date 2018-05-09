@@ -8,7 +8,7 @@
                 v-on:click="vote">投票</button>
         <p>投票数 {{ data.vote }} </p>
         <p>
-          残り<strong v-bind:class="{'text-success':isNormal,'text-warning':isWarning,'text-danger': isDanger}">{{ data.close_time }}</strong>min
+          残り<strong v-bind:class="{'text-success':isNormal,'text-warning':isWarning,'text-danger': isDanger}">{{ data.diffInMinutes }}</strong>min
         </p>
       </div>
     </div>
