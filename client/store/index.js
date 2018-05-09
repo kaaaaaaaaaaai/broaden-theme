@@ -16,18 +16,27 @@ const store = () => new Vuex.Store({
     },
     actions: {
         GET_RECENT_THEME({commit, state, getters}, {page}){
-            const data = this.$axios.$get("api/theme/recent")
+            this.$axios.$get("api/theme/recent")
                 .then((response) => {
                     state.Contents = response.data
                     commit("SET_THUMBNAIL_URL", "Contents")
+                    console.log(response)
                 });
         },
         GET_POPULAR_THEME({commit, state, getters}, {page}){
-            const data = this.$axios.$get("api/theme/recent")
+            this.$axios.$get("api/theme/recent")
                 .then((response) => {
                     state.popularContents = response.data
                     commit("SET_THUMBNAIL_URL", "popularContents")
                 });
+        },
+        POST_VOTE_BY_ID({},{id}){
+            this.$axios.$post(`api/theme/vote/${id}`)
+                .then((response) => {
+
+                }).catch((error) => {
+                    console.log(error);
+            });
         }
     }
 })

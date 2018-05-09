@@ -37,25 +37,10 @@
         components :{
             Modal
         },
-        mounted() {
-            // props で受け取ったら自分のデータと同じように this で使用できるようになる
-            console.log(this.data)
-        },
         methods: {
             //投票apiに接続する
             vote: function(event){
-                axios.post(process.env.apiUrl+`/api/theme/vote/${this.data.id}`,{
-                    transformResponse: [() =>{
-                        this.isSending = true;
-                    }]
-                })
-                    .then((responce) => {
-                        console.log(responce);
-                        alert("投票しました");
-                        this.isSending = false;
-                    }).catch((error) => {
-                    console.log(error);
-                });
+                this.$store.dispatch("POST_VOTE_BY_ID", {id:this.data.id})
             },
             chengeLimitColor(time) {
                 if(time < 60){
@@ -69,27 +54,27 @@
             }
         },
         //残り時間を分単位で算出する
-        created: function() {
-            const now = new Date();
-            const closeTimeSorce = this.data.close_time.replace(/\-/g,'/');
-            const target = new Date(closeTimeSorce);
-            const diff = (target.getTime() - now.getTime())/(1000 * 60);
-
-            //四捨五入で代入
-            this.data.close_time = Math.round(diff);
-
-            const timer = setInterval(() => {
-                this.data.close_time--;
-                console.log(this.data.close_time);
-
-                this.chengeLimitColor(this.data.close_time);
-
-                if(this.data.close_time == 0){
-                    clearInterval(timer);
-                    this.isExist = false;
-                    console.log("end this theme");
-                }
-            },6000);
+        mounted() {
+            // const now = new Date();
+            // const closeTimeSorce = this.data.close_time.replace(/\-/g,'/');
+            // const target = new Date(closeTimeSorce);
+            // const diff = (target.getTime() - now.getTime())/(1000 * 60);
+            //
+            // //四捨五入で代入
+            // this.data.close_time = Math.round(diff);
+            //
+            // const timer = setInterval(() => {
+            //     this.data.close_time--;
+            //     console.log(this.data.close_time);
+            //
+            //     this.chengeLimitColor(this.data.close_time);
+            //
+            //     if(this.data.close_time == 0){
+            //         clearInterval(timer);
+            //         this.isExist = false;
+            //         console.log("end this theme");
+            //     }
+            // },6000);
             //timeによって色を変える
         },
     }
