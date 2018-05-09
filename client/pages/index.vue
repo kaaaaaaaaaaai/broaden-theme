@@ -20,12 +20,21 @@
     export default {
         layout:"base",
         name: 'Content',
+<<<<<<< Updated upstream
         computed: mapState([
             'Contents'
         ]),
+=======
+        data: function() {
+            return {
+                themeContents : [],
+                contentInfo : []
+            };
+        },
+>>>>>>> Stashed changes
         //キャメルケースで登録して使うときはスネークケースらしい
         components :{
-            VueItem
+            VueItem,
         },
         mounted() {
             this.$store.dispatch("GET_RECENT_THEME",{page:1})
