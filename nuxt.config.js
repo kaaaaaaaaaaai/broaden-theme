@@ -24,8 +24,10 @@ module.exports = {
             }
         }
     },
-    build: {
-        vendor: ['axios']
+
+
+    axios: {
+        baseURL:"http://localhost:8000",
     },
     //  cache: true,
     env:{
@@ -33,6 +35,7 @@ module.exports = {
     },
     modules: [
         // Simple usage
-        'nuxt-buefy'
+        'nuxt-buefy',
+        "@nuxtjs/axios"
     ]
 }
