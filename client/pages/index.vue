@@ -1,21 +1,25 @@
 <template>
-    <div class="section">
-        <div class="container">
-            <h1 class="title">Trending</h1>
-            <div id="themeList">
-                <div class="columns is-multiline is-mobile is-centered">
-                    <div v-for="theme in popularContents" class="column is-3">
-                        <vue-item :data="theme"></vue-item>
+    <div>
+        <div class="section">
+            <div class="container">
+                <h1 class="title">Trending</h1>
+                <div id="themeList">
+                    <div class="columns is-multiline is-mobile is-centered">
+                        <div v-for="theme in popularContents" class="column is-3">
+                            <vue-item :data="theme"></vue-item>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container">
-            <h1 class="title">Newest</h1>
-            <div>
-                <div class="columns is-multiline is-mobile is-centered">
-                    <div v-for="theme in Contents" class="column is-3">
-                        <vue-item :data="theme"></vue-item>
+        <div class="section">
+            <div class="container">
+                <h1 class="title">Newest</h1>
+                <div>
+                    <div class="columns is-multiline is-mobile is-centered">
+                        <div v-for="theme in Contents" class="column is-3">
+                            <vue-item :data="theme"></vue-item>
+                        </div>
                     </div>
                 </div>
             </div>

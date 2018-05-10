@@ -1,22 +1,23 @@
 <template>
-  <div class="card" @click="isCardModalActive = true">
-    <div v-show="isExist">
-      <img class="card-img-top" :src="data.thumb_url" :alt="data.title">
-      <div class="card-body">
-        <button type="button" name="button" class="btn btn-primary btn-block"
-                v-bind:class="{'disabled': isSending}"
-                v-on:click="vote">投票</button>
-        <p>投票数 {{ data.vote }} </p>
-        <p>
-          残り<strong v-bind:class="{'text-success':isNormal,'text-warning':isWarning,'text-danger': isDanger}">{{ data.diffInMinutes }}</strong>min
-        </p>
-      </div>
+    <div class="imageContainer" @click="isCardModalActive = true">
+      <figure class="image is-2by1">
+        <img class="imageContainer__image--round" :src="data.thumb_url" :alt="data.title">
+      </figure>
+      <b-modal :active.sync="isCardModalActive" has-modal-card>
+              <modal></modal>
+      </b-modal>
     </div>
-    <b-modal :active.sync="isCardModalActive" has-modal-card>
-            <modal></modal>
-    </b-modal>
-  </div>
 </template>
+
+<style scoped>
+  .imageContainer{
+    box-shadow: 7px 10px 7px 0px rgba(10,10,10,.2);
+    border-radius: 5px;
+  }
+  .imageContainer__image--round{
+    border-radius: 5px;
+  }
+</style>
 
 <script>
     import axios from 'axios';
