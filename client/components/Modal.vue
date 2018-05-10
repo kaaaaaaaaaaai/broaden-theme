@@ -1,6 +1,10 @@
 <template>
+<<<<<<< HEAD
   <div class="">
     <section>
+=======
+      <b-modal  :width="640" scroll="keep" @close="onChange">
+>>>>>>> c9b83b38637ecf3abfcb38c7be63474d3c542ae0
            <div class="card">
                <div class="card-content">
                    <div class="media">
@@ -21,17 +25,20 @@
                    </div>
                </div>
            </div>
-    </section>
-  </div>
+       </b-modal>
 </template>
 
 <script>
-    import axios from 'axios';
     export default {
         name: "Modal",
-        mounted() {
-            // props で受け取ったら自分のデータと同じように this で使用できるようになる
-            console.log(this.data)
-        },
+        props:["isCardModalActive"],
+
+        methods:{
+            onChange(e){
+                console.log("close")
+                //this.isCardModalActive = false
+                this.$emit("update", true)
+            },
+        }
     }
 </script>

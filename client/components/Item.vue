@@ -1,66 +1,51 @@
 <template>
-  <div class="card" @click="isCardModalActive = true">
-    <div v-show="isExist">
-      <img class="card-img-top" :src="data.thumb_url" :alt="data.title">
-      <div class="card-body">
-        <button type="button" name="button" class="btn btn-primary btn-block"
-                v-bind:class="{'disabled': isSending}"
-                v-on:click="vote">投票</button>
-        <p>投票数 {{ data.vote }} </p>
-        <p>
-          残り<strong v-bind:class="{'text-success':isNormal,'text-warning':isWarning,'text-danger': isDanger}">{{ data.diffInMinutes }}</strong>min
-        </p>
-      </div>
+    <div class="imageContainer">
+      <figure class="image is-2by1" @click="isCardModalActive = true">
+        <img class="imageContainer__image--round" :src="data.thumb_url" :alt="data.title">
+      </figure>
+      <b-modal :active.sync="isCardModalActive" :width="640" scroll="keep" :onCancel="onCancel">
+        <div class="content">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Phasellus nec iaculis mauris. <a>@bulmaio</a>.
+          <a>#css</a> <a>#responsive</a>
+          <br>
+          <small>11:09 PM - 1 Jan 2016</small>
+        </div>
+      </b-modal>
     </div>
-    <b-modal :active.sync="isCardModalActive" has-modal-card>
-            <modal></modal>
-    </b-modal>
-  </div>
 </template>
+
+<style scoped>
+  .imageContainer{
+    box-shadow: 7px 10px 7px 0px rgba(10,10,10,.2);
+    border-radius: 5px;
+  }
+  .imageContainer__image--round{
+    border-radius: 5px;
+  }
+</style>
 
 <script>
     import axios from 'axios';
-    import Modal from "./Modal.vue"
     export default {
         name: "Item",
         props: ["data"],
-        data: function() {
+        data() {
             return {
-                isExist:    true,
-                isNormal:   true,
-                isWarning:  false,
-                isDanger:   false,
-                isSending:  false,
                 isCardModalActive: false
             }
         },
         components :{
-            Modal
         },
         methods: {
             //投票apiに接続する
             vote: function(event){
                 this.$store.dispatch("POST_VOTE_BY_ID", {id:this.data.id})
             },
-            chengeLimitColor(time) {
-                if(time < 60){
-                    this.isNormal = false;
-                    this.isAlert  = false;
-                    this.isDanger = true;
-                }else if(time < 3300){
-                    this.isNormal = false;
-                    this.isAlert  = true;
-                }
-            },
-            onCancel(){
-              this.isCardModalActive =false;
+            onCancel(data){
+                this.isCardModalActive = !this.isCardModalActive
+                this.$emit('close')
             }
         },
-        // created() {
-        //   this.$modal.open(
-        //     // onCancel: (){this.isCardModalActive =false};
-        //     );
-        //
-        // },
     }
 </script>
