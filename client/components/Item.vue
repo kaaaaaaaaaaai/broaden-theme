@@ -26,11 +26,6 @@
         props: ["data"],
         data: function() {
             return {
-                isExist:    true,
-                isNormal:   true,
-                isWarning:  false,
-                isDanger:   false,
-                isSending:  false,
                 isCardModalActive: false
             }
         },
@@ -42,40 +37,9 @@
             vote: function(event){
                 this.$store.dispatch("POST_VOTE_BY_ID", {id:this.data.id})
             },
-            chengeLimitColor(time) {
-                if(time < 60){
-                    this.isNormal = false;
-                    this.isAlert  = false;
-                    this.isDanger = true;
-                }else if(time < 3300){
-                    this.isNormal = false;
-                    this.isAlert  = true;
-                }
-            }
         },
         //残り時間を分単位で算出する
         mounted() {
-            // const now = new Date();
-            // const closeTimeSorce = this.data.close_time.replace(/\-/g,'/');
-            // const target = new Date(closeTimeSorce);
-            // const diff = (target.getTime() - now.getTime())/(1000 * 60);
-            //
-            // //四捨五入で代入
-            // this.data.close_time = Math.round(diff);
-            //
-            // const timer = setInterval(() => {
-            //     this.data.close_time--;
-            //     console.log(this.data.close_time);
-            //
-            //     this.chengeLimitColor(this.data.close_time);
-            //
-            //     if(this.data.close_time == 0){
-            //         clearInterval(timer);
-            //         this.isExist = false;
-            //         console.log("end this theme");
-            //     }
-            // },6000);
-            //timeによって色を変える
         },
     }
 </script>

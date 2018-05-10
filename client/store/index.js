@@ -14,7 +14,6 @@ const store = () => new Vuex.Store({
         SET_COUNTDOWN_CLOSE_ITEM(state, valName){
             eval(`state.${valName}`).forEach((c) => {
                 c.countdown = setInterval(()=>{
-
                     c.diffInMinutes--;
                     console.log(c.diffInMinutes);
                     //this.chengeLimitColor(this.data.close_time);
@@ -42,7 +41,7 @@ const store = () => new Vuex.Store({
                 });
         },
         GET_POPULAR_THEME({commit, state, getters}, {page}){
-            this.$axios.$get("api/theme/recent")
+            this.$axios.$get("api/theme/popular")
                 .then((response) => {
                     state.popularContents = response.data
                     commit("SET_THUMBNAIL_URL", "popularContents")
