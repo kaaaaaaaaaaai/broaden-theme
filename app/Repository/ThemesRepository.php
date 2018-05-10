@@ -37,6 +37,19 @@ class ThemesRepository
         return $data;
     }
 
+    /**
+     * @param $limit
+     * @return Themes
+     */
+    public function getPopular($limit){
+        $data = $this->themes->aliveTheme($this->carbon)->orderBy("vote", "DESC")->take($limit)->paginate(10);
+
+        foreach ($data as $d){
+            $d->diffInMinutes = $d->diff_minutes_from_now;
+        }
+        return $data;
+    }
+
 
     public function save($data){
         $data["close_time"] = $this->carbon->addHour(24);

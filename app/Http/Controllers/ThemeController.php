@@ -46,6 +46,14 @@ class ThemeController extends Controller
         return $new;
 
     }
+    /**
+     * @return \App\Models\Themes
+     */
+    public function popular(){
+        $new = $this->themeRepository->getPopular(10);
+        return $new;
+
+    }
 
     private function array_wordwrap($char){
         return  $this->mb_wordwrap(
