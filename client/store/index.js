@@ -15,7 +15,7 @@ const store = () => new Vuex.Store({
             eval(`state.${valName}`).forEach((c) => {
                 c.countdown = setInterval(()=>{
                     c.diffInMinutes--;
-                    console.log(c.diffInMinutes);
+                    //console.log(c.diffInMinutes);
                     //this.chengeLimitColor(this.data.close_time);
                     if(c.diffInMinutes == 0){
                         clearInterval(c.countdown);

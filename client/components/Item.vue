@@ -1,10 +1,16 @@
 <template>
-    <div class="imageContainer" @click="isCardModalActive = true">
-      <figure class="image is-2by1">
+    <div class="imageContainer">
+      <figure class="image is-2by1" @click="isCardModalActive = true">
         <img class="imageContainer__image--round" :src="data.thumb_url" :alt="data.title">
       </figure>
-      <b-modal :active.sync="isCardModalActive" has-modal-card>
-              <modal></modal>
+      <b-modal :active.sync="isCardModalActive" :width="640" scroll="keep" :onCancel="onCancel">
+        <div class="content">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Phasellus nec iaculis mauris. <a>@bulmaio</a>.
+          <a>#css</a> <a>#responsive</a>
+          <br>
+          <small>11:09 PM - 1 Jan 2016</small>
+        </div>
       </b-modal>
     </div>
 </template>
@@ -21,26 +27,25 @@
 
 <script>
     import axios from 'axios';
-    import Modal from "../components/Modal.vue"
     export default {
         name: "Item",
         props: ["data"],
-        data: function() {
+        data() {
             return {
                 isCardModalActive: false
             }
         },
         components :{
-            Modal
         },
         methods: {
             //投票apiに接続する
             vote: function(event){
                 this.$store.dispatch("POST_VOTE_BY_ID", {id:this.data.id})
             },
-        },
-        //残り時間を分単位で算出する
-        mounted() {
+            onCancel(data){
+                this.isCardModalActive = !this.isCardModalActive
+                this.$emit('close')
+            }
         },
     }
 </script>

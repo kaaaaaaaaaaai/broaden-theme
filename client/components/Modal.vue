@@ -1,7 +1,5 @@
 <template>
-  <div class="">
-    <section>
-      <b-modal :active.sync="isCardModalActive" :width="640" scroll="keep">
+      <b-modal  :width="640" scroll="keep" @close="onChange">
            <div class="card">
                <div class="card-image">
                    <figure class="image is-4by3">
@@ -27,21 +25,19 @@
                </div>
            </div>
        </b-modal>
-    </section>
-  </div>
 </template>
 
 <script>
-    import axios from 'axios';
     export default {
         name: "Modal",
-        mounted() {
-            // props で受け取ったら自分のデータと同じように this で使用できるようになる
-            console.log(this.data)
-        },
-        //残り時間を分単位で算出する
-        created: function() {
-          console.log(this.data);
-        },
+        props:["isCardModalActive"],
+
+        methods:{
+            onChange(e){
+                console.log("close")
+                //this.isCardModalActive = false
+                this.$emit("update", true)
+            },
+        }
     }
 </script>
