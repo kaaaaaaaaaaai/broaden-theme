@@ -1,12 +1,7 @@
 <template>
   <div class="">
     <section>
-      <b-modal :active.sync="isCardModalActive" :width="640" scroll="keep">
            <div class="card">
-               <div class="card-image">
-                   <figure class="image is-4by3">
-                   </figure>
-               </div>
                <div class="card-content">
                    <div class="media">
                        <div class="media-left">
@@ -26,7 +21,6 @@
                    </div>
                </div>
            </div>
-       </b-modal>
     </section>
   </div>
 </template>
@@ -38,10 +32,6 @@
         mounted() {
             // props で受け取ったら自分のデータと同じように this で使用できるようになる
             console.log(this.data)
-        },
-        //残り時間を分単位で算出する
-        created: function() {
-          console.log(this.data);
         },
     }
 </script>

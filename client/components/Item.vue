@@ -20,7 +20,7 @@
 
 <script>
     import axios from 'axios';
-    import Modal from "../components/Modal.vue"
+    import Modal from "./Modal.vue"
     export default {
         name: "Item",
         props: ["data"],
@@ -51,31 +51,16 @@
                     this.isNormal = false;
                     this.isAlert  = true;
                 }
+            },
+            onCancel(){
+              this.isCardModalActive =false;
             }
         },
-        //残り時間を分単位で算出する
-        mounted() {
-            // const now = new Date();
-            // const closeTimeSorce = this.data.close_time.replace(/\-/g,'/');
-            // const target = new Date(closeTimeSorce);
-            // const diff = (target.getTime() - now.getTime())/(1000 * 60);
-            //
-            // //四捨五入で代入
-            // this.data.close_time = Math.round(diff);
-            //
-            // const timer = setInterval(() => {
-            //     this.data.close_time--;
-            //     console.log(this.data.close_time);
-            //
-            //     this.chengeLimitColor(this.data.close_time);
-            //
-            //     if(this.data.close_time == 0){
-            //         clearInterval(timer);
-            //         this.isExist = false;
-            //         console.log("end this theme");
-            //     }
-            // },6000);
-            //timeによって色を変える
-        },
+        // created() {
+        //   this.$modal.open(
+        //     // onCancel: (){this.isCardModalActive =false};
+        //     );
+        //
+        // },
     }
 </script>
