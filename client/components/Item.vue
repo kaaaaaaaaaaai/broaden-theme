@@ -3,7 +3,7 @@
       <figure class="image is-2by1" @click="isCardModalActive = true">
         <img class="imageContainer__image--round" :src="data.thumb_url" :alt="data.title">
       </figure>
-      <b-modal :active.sync="isCardModalActive" :width="640" scroll="keep" :onCancel="onCancel">
+      <b-modal :active.sync="isCardModalActive" :width="640" scroll="keep">
         <div class="content">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Phasellus nec iaculis mauris. <a>@bulmaio</a>.
@@ -42,10 +42,6 @@
             vote: function(event){
                 this.$store.dispatch("POST_VOTE_BY_ID", {id:this.data.id})
             },
-            onCancel(data){
-                this.isCardModalActive = !this.isCardModalActive
-                this.$emit('close')
-            }
         },
     }
 </script>
