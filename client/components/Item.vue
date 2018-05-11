@@ -3,7 +3,7 @@
       <figure class="image is-2by1" @click="isCardModalActive = true">
         <img class="imageContainer__image--round" :src="data.thumb_url" :alt="data.title">
       </figure>
-      <b-modal :active.sync="isCardModalActive" :width="640" scroll="keep" :onCancel="onCancel">
+      <b-modal :active.sync="isCardModalActive" :width="640" scroll="keep">
         <div class="card">
             <header class="card-header">
             <p class="card-header-title">
@@ -59,6 +59,10 @@
                 this.$store.dispatch("POST_VOTE_BY_ID", {id:this.data.id})
                 console.log("voted");
             },
+            onCancel(data){
+                this.isCardModalActive = !this.isCardModalActive
+                this.$emit('close')
+            }
         },
     }
 </script>
