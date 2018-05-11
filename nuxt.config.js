@@ -27,7 +27,7 @@ module.exports = {
 
 
     axios: {
-        baseURL:"http://localhost:8000",
+        baseURL:"http://localhost:8888",
     },
     //  cache: true,
     env:{

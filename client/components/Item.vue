@@ -3,13 +3,29 @@
       <figure class="image is-2by1" @click="isCardModalActive = true">
         <img class="imageContainer__image--round" :src="data.thumb_url" :alt="data.title">
       </figure>
-      <b-modal :active.sync="isCardModalActive" :width="640" scroll="keep">
-        <div class="content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-          <a>#css</a> <a>#responsive</a>
-          <br>
-          <small>11:09 PM - 1 Jan 2016</small>
+      <b-modal :active.sync="isCardModalActive" :width="640" scroll="keep" :onCancel="onCancel">
+        <div class="card">
+            <header class="card-header">
+            <p class="card-header-title">
+              テーマ
+            </p>
+            <p class="card-header-icon">
+              <span><b-icon icon="account-multiple" type="is-info"></b-icon> + {{data.vote}}</span>
+            </p>
+            </header>
+            <div class="card-content">
+                <div class="content">
+                  <p>  {{ data.scene }} </p>
+                </div>
+            </div>
+            <footer class="card-footer">
+              <p class="card-footer-item">
+                <span><button class="button is-primary" @click= "vote"><b-icon icon="volume-high"></b-icon><span>投票する</span></button></span>
+              </p>
+              <p class="card-footer-item">
+                <span>残り:{{data.diffInMinutes}}</span>
+              </p>
+            </footer>
         </div>
       </b-modal>
     </div>
@@ -41,6 +57,7 @@
             //投票apiに接続する
             vote: function(event){
                 this.$store.dispatch("POST_VOTE_BY_ID", {id:this.data.id})
+                console.log("voted");
             },
         },
     }
