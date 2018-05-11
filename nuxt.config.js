@@ -27,7 +27,7 @@ module.exports = {
 
 
     axios: {
-        baseURL:"http://localhost:8888",
+        baseURL:process.env.FRONT_API_URL,
     },
     //  cache: true,
     env:{
