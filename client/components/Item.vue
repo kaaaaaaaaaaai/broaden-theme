@@ -39,6 +39,10 @@
   .imageContainer__image--round{
     border-radius: 5px;
   }
+  .imageContainer__image--round:hover{
+      transform: scale(1.05);
+      transition: 0.3s;
+  }
 </style>
 
 <script>
