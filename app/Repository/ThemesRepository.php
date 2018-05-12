@@ -29,7 +29,7 @@ class ThemesRepository
      * @return Themes
      */
     public function getRecent($limit){
-        $data = $this->themes->aliveTheme($this->carbon)->take($limit)->paginate(10);
+        $data = $this->themes->aliveTheme($this->carbon)->orderBy("created_at", "DESC")->take($limit)->paginate($limit);
 
         foreach ($data as $d){
             $d->diffInMinutes = $d->diff_minutes_from_now;
@@ -42,7 +42,7 @@ class ThemesRepository
      * @return Themes
      */
     public function getPopular($limit){
-        $data = $this->themes->aliveTheme($this->carbon)->orderBy("vote", "DESC")->take($limit)->paginate(10);
+        $data = $this->themes->aliveTheme($this->carbon)->orderBy("vote", "DESC")->take($limit)->paginate($limit);
 
         foreach ($data as $d){
             $d->diffInMinutes = $d->diff_minutes_from_now;

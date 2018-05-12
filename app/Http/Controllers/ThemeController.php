@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\Repository\ThemesRepository;
+use App\services\BuildThemeImage\CharOne;
 use Carbon\Carbon;
 use function Couchbase\defaultDecoder;
 use Illuminate\Http\Request;
@@ -20,6 +21,7 @@ class ThemeController extends Controller
 
     private $font_big;
     private $font_small;
+    private $baseColorPick;
 
     private $baseImgFiles = [
         "assets/img/sample.jpg",
@@ -36,13 +38,14 @@ class ThemeController extends Controller
         $this->themeRepository = $themeRepository;
         $this->font_big = public_path("hs6.ttc");
         $this->font_small = public_path("hs.ttc");
+        $this->baseColorPick = config("basecolor");
     }
 
     /**
      * @return \App\Models\Themes
      */
     public function recent(){
-        $new = $this->themeRepository->getRecent(10);
+        $new = $this->themeRepository->getRecent(30);
         return $new;
 
     }
@@ -58,7 +61,7 @@ class ThemeController extends Controller
     private function array_wordwrap($char){
         return  $this->mb_wordwrap(
             $char,
-            8,
+            15,
             "\n",
             true
         );
@@ -66,6 +69,10 @@ class ThemeController extends Controller
 
     private function setCharName($word, $x = 65, $y = 200, $font_size = 23){
         $color = imagecolorallocate($this->base_image, 50, 50, 50);
+        $tb = imagettfbbox(250, 0, $this->font_big, $word);
+        dd($tb);
+        $x = ceil((250 - $tb[2]) / 2);
+        dd($x);
         ImageTTFText($this->base_image, $font_size, 0, $x, $y, $color, $this->font_big, $word);
     }
 
@@ -109,40 +116,59 @@ class ThemeController extends Controller
     }
 
     public function add(Request $request){
+        //1000x500の画像生成
+        $im = imagecreate (1000, 500);
+        //背景色決定
+        $bg_colors = $this->baseColorPick[mt_rand(0, count($this->baseColorPick) - 1)];
+
+        $bg = ImageColorAllocate ($im, $bg_colors["r"], $bg_colors["g"], $bg_colors["b"]);
+        $size = 40;
+//ThankU!
+        $font1 = public_path("hs6.ttc");
+        $str = $this->array_wordwrap($request->get("character_text"));
+        $tb = imagettfbbox($size, 0, $font1, $str);
+
+        $x = ceil((1000 - $tb[2]) / 2); //640は画像の幅
+        $y = ceil((500 - $tb[3]) / 2); //640は画像の幅
+        $font_color = ImageColorAllocate ($im, $bg_colors["font_color"]["r"], $bg_colors["font_color"]["g"], $bg_colors["font_color"]["b"]);
+        ImageTTFText ($im, $size, 0, $x, $y, $font_color, $font1, $str);//size, angle,x,y,color,font,string
+
         $d = $this->themeRepository->save($request->all());
+        imagejpeg($im, public_path("theme_img/{$d->id}.jpg"));
 
-        //キャラクター名数を分割して数に応じて生成画像を変更
-        $jpg = resource_path($this->baseImgFiles[mt_rand(0, 3)]);
-        $this->base_image = imagecreatefromjpeg($jpg);
-
-        $charArr = explode(",", $request->get("character_text"));
-        $charWrapArr = array_map([$this, "array_wordwrap"], $charArr);
-
-        $this->setProductName($request->get("product"));
-
-        $scene = $this->mb_wordwrap($request->get("scene"), 30, "\n", true);
-        $this->setSceneName($scene);
-
-        switch (count($charArr)){
-            case 1:
-                $this->setCharName(array_shift($charWrapArr));
-                break;
-            case 2:
-                $this->setCharName(array_shift($charWrapArr));
-                $this->setCharName("×", 315, 230, 40);
-                $this->setCharName(array_shift($charWrapArr), 375);
-                break;
-            case 3:
-                $this->setCharName(array_shift($charWrapArr));
-                $this->setCharName("×", 315, 230, 40);
-                $this->setCharName(array_shift($charWrapArr), 375);
-                $this->setCharName("×", 625, 230, 40);
-                $this->setCharName(array_shift($charWrapArr), 685);
-                break;
-            default:
-                break;
-        }
-        imagejpeg($this->base_image, public_path("theme_img/{$d->id}.jpg"));
+//        die;
+//
+//        //キャラクター名数を分割して数に応じて生成画像を変更
+//        $this->base_image = imagecreatefromjpeg($jpg);
+//
+//        $charArr = explode(",", $request->get("character_text"));
+//        $charWrapArr = array_map([$this, "array_wordwrap"], $charArr);
+//
+//        //$this->setProductName($request->get("product"));
+//
+//        //$scene = $this->mb_wordwrap($request->get("scene"), 30, "\n", true);
+//        //$this->setSceneName($scene);
+//
+//        switch (count($charArr)){
+//            case 1:
+//                $this->setCharName(array_shift($charWrapArr));
+//                break;
+//            case 2:
+//                $this->setCharName(array_shift($charWrapArr));
+//                $this->setCharName("×", 315, 230, 40);
+//                $this->setCharName(array_shift($charWrapArr), 375);
+//                break;
+//            case 3:
+//                $this->setCharName(array_shift($charWrapArr));
+//                $this->setCharName("×", 315, 230, 40);
+//                $this->setCharName(array_shift($charWrapArr), 375);
+//                $this->setCharName("×", 625, 230, 40);
+//                $this->setCharName(array_shift($charWrapArr), 685);
+//                break;
+//            default:
+//                break;
+//        }
+//        imagejpeg($this->base_image, public_path("theme_img/{$d->id}.jpg"));
 
         return response(["status"=> $d], 201);
     }
