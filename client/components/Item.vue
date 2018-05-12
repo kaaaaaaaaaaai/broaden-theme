@@ -1,8 +1,15 @@
 <template>
-    <div class="imageContainer">
-      <figure class="image is-2by1" @click="isCardModalActive = true">
-        <img class="imageContainer__image--round" :src="data.thumb_url" :alt="data.title">
-      </figure>
+    <div class="imageContainer card">
+        <div class="card-image">
+          <figure class="image is-2by1" @click="isCardModalActive = true">
+            <img :src="data.thumb_url" :alt="data.title">
+          </figure>
+        </div>
+        <footer class="card-footer">
+            <a href="#" class="card-footer-item">Save</a>
+            <a href="#" class="card-footer-item">Edit</a>
+            <a href="#" class="card-footer-item">Delete</a>
+        </footer>
       <b-modal :active.sync="isCardModalActive" :width="640" scroll="keep">
         <div class="card">
             <header class="card-header">
