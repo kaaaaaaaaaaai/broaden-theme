@@ -14,6 +14,10 @@ use App\services\BuildThemeImage\CharOne;
 use Carbon\Carbon;
 use function Couchbase\defaultDecoder;
 use Illuminate\Http\Request;
+use Laravel\Socialite\Facades\Socialite;
+use Laravel\Socialite\SocialiteManager;
+use SocialiteProviders\Manager\SocialiteWasCalled;
+use SocialiteProviders\Twitter\TwitterExtendSocialite;
 
 class ThemeController extends Controller
 {
@@ -191,5 +195,24 @@ class ThemeController extends Controller
             $i++;
         }
         return $return.$string;
+    }
+
+
+
+
+
+
+    public function redirect(){
+        \Log::info("redirect");
+        $redirectResponse = Socialite::with('twitter')->redirect();
+        //dd(\Request::session());
+        return ["redirect_url" => $redirectResponse->getTargetUrl()];
+    }
+
+    public function callback(){
+        \Log::info("callbacj");
+
+        $user = Socialite::with("twitter")->user();
+        dd($user);
     }
 }

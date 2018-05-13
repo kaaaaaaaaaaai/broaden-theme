@@ -162,6 +162,8 @@ return [
 
         Pbmedia\LaravelFFMpeg\FFMpegServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
+        \SocialiteProviders\Manager\ServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
     ],
 
     /*
@@ -210,7 +212,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'FFMpeg' => Pbmedia\LaravelFFMpeg\FFMpegFacade::class
+        'FFMpeg' => Pbmedia\LaravelFFMpeg\FFMpegFacade::class,
+        //'Socialite' => Laravel\Socialite\Facades\Socialite::class
 
     ],
 

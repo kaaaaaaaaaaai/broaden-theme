@@ -27,7 +27,15 @@ module.exports = {
 
 
     axios: {
+        credentials: true,
         baseURL:process.env.FRONT_API_URL,
+        requestInterceptor: (config, { store }) => {
+            if (store.state.token) {
+                config.headers.common['Authorization'] = `Bearer ${store.state.token}`
+            }
+            return config
+        },
+        debug:true
     },
     //  cache: true,
     env:{
@@ -37,5 +45,8 @@ module.exports = {
         // Simple usage
         'nuxt-buefy',
         "@nuxtjs/axios"
+    ],
+    plugins: [
+        { src: '~/plugins/cookies' }
     ]
 }

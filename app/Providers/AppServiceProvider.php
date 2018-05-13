@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Laravel\Socialite\One\TwitterProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        $this->bootTwitterSocialite();
     }
 
     /**
@@ -25,4 +27,16 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
+    private function bootTwitterSocialite()
+    {
+        $twitter = $this->app->make('Laravel\Socialite\Contracts\Factory');
+        $twitter->extend(
+            'spotify',
+            function ($app) use ($twitter) {
+                $config = $app['config']['services.twitter'];
+                return $twitter->buildProvider(TwitterProvider::class, $config);
+            }
+        );
+    }
+
 }

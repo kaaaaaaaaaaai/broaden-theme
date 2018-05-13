@@ -3,7 +3,7 @@
         <div class="card-image">
           <figure class="image is-2by1" @click="isCardModalActive = true">
             <img :src="data.thumb_url" :alt="data.title">
-          </figure>
+          </figure>w
         </div>
         <footer class="card-footer">
             <a href="#" class="card-footer-item">Save</a>
