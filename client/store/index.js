@@ -3,7 +3,8 @@ import Vuex from 'vuex'
 const store = () => new Vuex.Store({
     state: {
         Contents: [],
-        popularContents: []
+        popularContents: [],
+        detailTheme : {}
     },
     mutations: {
         SET_THUMBNAIL_URL(state, valName){
@@ -54,8 +55,17 @@ const store = () => new Vuex.Store({
                 }).catch((error) => {
                     console.log(error);
             });
+        },
+        GET_DETAIL_THEME({state}, {id}){
+            return this.$axios.$get(`api/theme/${id}`)
+                .then((response) => {
+                    console.log(response)
+                    state.detailTheme = response
+                }).catch((error) => {
+                    throw new Error("a");
+                });
         }
     }
-})
+});
 
 export default store

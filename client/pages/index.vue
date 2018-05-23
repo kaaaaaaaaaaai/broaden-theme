@@ -1,5 +1,19 @@
 <template>
     <div>
+        <section class="hero is-primary">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        ようこそ！
+                    </h1>
+                    <h2 class="subtitle">
+                        お題を投稿しましょう！
+                    </h2>
+                </div>
+            </div>
+        </section>
+        <div class="container is-fluid">
+
         <div class="section">
             <div class="container">
                 <h1 class="title">Trending</h1>
@@ -23,6 +37,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 </template>
