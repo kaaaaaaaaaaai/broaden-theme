@@ -50,6 +50,14 @@ class ThemesRepository
         return $data;
     }
 
+    public function detail($id){
+        $data = $this->themes->find($id);
+
+        $data->diffInMinutes = $data->diff_minutes_from_now;
+
+        return $data;
+    }
+
 
     public function save($data){
         $data["close_time"] = $this->carbon->addHour(24);

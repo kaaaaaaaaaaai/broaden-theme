@@ -24,4 +24,5 @@ Route::group(["prefix"=>"theme"], function(){
     Route::post("add", "ThemeController@add");
 
     Route::post("vote/{id}", "ThemeController@vote")->where("id", "[0-9]+");
+    Route::get("/{id}", "ThemeController@detail")->where("id", "[0-9]+");
 });

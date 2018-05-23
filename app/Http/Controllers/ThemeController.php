@@ -49,6 +49,10 @@ class ThemeController extends Controller
         return $new;
 
     }
+
+    public function detail($id){
+        return $this->themeRepository->detail($id);
+    }
     /**
      * @return \App\Models\Themes
      */
