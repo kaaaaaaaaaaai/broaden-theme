@@ -34,9 +34,7 @@
                         </figure>
                     </div>
                     <footer class="card-footer">
-                        <a href="#" class="card-footer-item">Save</a>
-                        <a href="#" class="card-footer-item">Edit</a>
-                        <a href="#" class="card-footer-item">Delete</a>
+                        <a href="#" class="card-footer-item" @click="upload">投稿する</a>
                     </footer>
                 </div>
             </div>
@@ -53,7 +51,8 @@
         data(){
           return {
               isCardModalActive:false,
-              dataUrl:"でもこれ？"
+              dataUrl:"でもこれ？",
+              uploadFile: null
           }
         },
         computed:{
@@ -75,6 +74,7 @@
                 var reader = new FileReader();
 
                 this.isCardModalActive = true;
+                this.uploadFile = fileList[0];
                 //dataURL形式でファイルを読み込む
                 reader.readAsDataURL(fileList[0]);
 
@@ -83,8 +83,11 @@
                     console.log(this.dataUrl);
                     this.dataUrl =  reader.result;
                 };
-                reader.readAsDataURL(file);
-                console.log(fileList);
+            },
+            upload:function(){
+                const formData = new FormData();
+                formData.append('file', this.uploadFile);
+                store.dispatch("GET_DETAIL_THEME",{id: this.detailTheme.id, data:formData})
             }
         },
     }

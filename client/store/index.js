@@ -64,6 +64,20 @@ const store = () => new Vuex.Store({
                 }).catch((error) => {
                     throw new Error("a");
                 });
+        },
+        UPLOAD_IMAGE_OF_THEME({},{data, themeId}){
+            let config = {
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            };
+            this.$axios.$post(`api/theme/${themeId}/upload`, data, config)
+                .then((response) => {
+                    console.log(response)
+                    state.detailTheme = response
+                }).catch((error) => {
+                    throw new Error("a");
+                });
         }
     }
 });
