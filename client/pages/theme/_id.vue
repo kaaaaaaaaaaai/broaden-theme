@@ -4,6 +4,7 @@
             <div class="hero-body">
                 <div class="container">
                     <h1 class="title">{{detailTheme.scene}}</h1>
+                    <h1 class="title">{{detailTheme.id}}</h1>
                     <h2 class="subtitle">
                         お題を投稿しましょう！
                     </h2>
@@ -87,7 +88,7 @@
             upload:function(){
                 const formData = new FormData();
                 formData.append('file', this.uploadFile);
-                store.dispatch("GET_DETAIL_THEME",{id: this.detailTheme.id, data:formData})
+                this.$store.dispatch("UPLOAD_IMAGE_OF_THEME",{themeId: this.detailTheme.id, data:formData})
             }
         },
     }

@@ -68,10 +68,11 @@ const store = () => new Vuex.Store({
         UPLOAD_IMAGE_OF_THEME({},{data, themeId}){
             let config = {
                 headers: {
-                    'content-type': 'multipart/form-data'
+                    'content-type': 'multipart/form-data',
+                    "Access-Control-Allow-Origin": "http://localhost:3000"
                 }
             };
-            this.$axios.$post(`api/theme/${themeId}/upload`, data, config)
+            this.$axios.$post(`api/theme/${themeId}/upload`, data)
                 .then((response) => {
                     console.log(response)
                     state.detailTheme = response
