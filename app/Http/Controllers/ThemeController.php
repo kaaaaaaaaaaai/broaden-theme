@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Repository\ImagesRepository;
 use App\Repository\ThemesRepository;
 use App\services\BuildThemeImage\CharOne;
 use Carbon\Carbon;
@@ -18,6 +19,7 @@ use Illuminate\Http\Request;
 class ThemeController extends Controller
 {
     private $themeRepository;
+    private $imageRepository;
 
     private $font_big;
     private $font_small;
@@ -32,10 +34,12 @@ class ThemeController extends Controller
 
 
     public function __construct(
-        ThemesRepository $themeRepository
+        ThemesRepository $themeRepository,
+        ImagesRepository $imageRepository
     )
     {
         $this->themeRepository = $themeRepository;
+        $this->imageRepository = $imageRepository;
         $this->font_big = public_path("hs6.ttc");
         $this->font_small = public_path("hs.ttc");
         $this->baseColorPick = config("basecolor");
@@ -50,6 +54,22 @@ class ThemeController extends Controller
 
     }
 
+    /**
+     * @param $id
+     * @param Request $request
+     */
+    public function upload($id, Request $request){
+        $filename = $request->file->store('public/images');
+        $data = $this->imageRepository->save($filename, $id);
+
+        return response(["status"=> $data], 200);
+
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function detail($id){
         return $this->themeRepository->detail($id);
     }
