@@ -21,14 +21,14 @@
                 <h1 class="title">一覧</h1>
                 <div>
                     <div class="columns is-multiline is-mobile is-centered">
-                        <div class="column is-4 is-hidden-mobile" @dragleave.prevent @dragover.prevent @drop.prevent="onDrop">
+                        <div class="column is-3-mobile is-3-tablet is-hidden-mobile" @dragleave.prevent @dragover.prevent @drop.prevent="onDrop">
                             <figure class="image" >
                                 <img src="/images/draganddrop.png">
                             </figure>
                         </div>
-                        <div v-for="image in detailTheme.images" class="column is-4">
-                            <figure class="image" @click="openDetailModal(image.thumb_url)">
-                                <img :src="image.thumb_url">
+                        <div v-for="image in detailTheme.images" class="column is-3-desktop is-3-tablet is-6-mobile">
+                            <figure @click="openDetailModal(image.thumb_url)">
+                                <img :src="image.thumb_url" style="max-height: 9em;">
                             </figure>
                         </div>
                     </div>
