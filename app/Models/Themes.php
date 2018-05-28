@@ -12,7 +12,15 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Themes extends Model
 {
+    protected $table = "themes";
     protected $fillable = ["character_text", "product", "scene", "close_time"];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function image(){
+        return $this->hasMany(Images::class, "theme_id");
+    }
 
     /**
      * @param Carbon $carbon

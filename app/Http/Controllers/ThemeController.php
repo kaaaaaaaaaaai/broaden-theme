@@ -9,12 +9,14 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Resources\ThemeResource;
 use App\Repository\ImagesRepository;
 use App\Repository\ThemesRepository;
 use App\services\BuildThemeImage\CharOne;
 use Carbon\Carbon;
 use function Couchbase\defaultDecoder;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\Resource;
 
 class ThemeController extends Controller
 {
@@ -59,11 +61,9 @@ class ThemeController extends Controller
      * @param Request $request
      */
     public function upload($id, Request $request){
-        $filename = $request->file->store('public/images');
+        $filename = $request->file->store('images');
         $data = $this->imageRepository->save($filename, $id);
-
         return response(["status"=> $data], 200);
-
     }
 
     /**
@@ -71,7 +71,9 @@ class ThemeController extends Controller
      * @return mixed
      */
     public function detail($id){
-        return $this->themeRepository->detail($id);
+
+        $data = $this->themeRepository->detail($id);
+        return ThemeResource::make($data);
     }
     /**
      * @return \App\Models\Themes

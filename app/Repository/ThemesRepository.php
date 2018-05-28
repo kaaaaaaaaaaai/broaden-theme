@@ -1,5 +1,6 @@
 <?php
 namespace App\Repository;
+use App\Models\Images;
 use App\Models\Themes;
 use Carbon\Carbon;
 
