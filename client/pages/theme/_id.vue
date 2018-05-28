@@ -6,49 +6,46 @@
                     <h1 class="title">{{detailTheme.scene}}</h1>
                     <h1 class="title">{{detailTheme.id}}</h1>
                     <h2 class="subtitle">
-                        お題を投稿しましょう！
+                        画像の投稿はPCからできます。
                     </h2>
                 </div>
             </div>
         </section>
+        <div class="notification is-info is-hidden-tablet">
+            <button class="delete"></button>
+            画像の投稿はPCからできます。
+        </div>
+
         <div class="section">
             <div class="container">
                 <h1 class="title">一覧</h1>
                 <div>
                     <div class="columns is-multiline is-mobile is-centered">
+                        <div class="column is-4" @dragleave.prevent @dragover.prevent @drop.prevent="onDrop">
+                            <figure class="image" >
+                                <img src="/images/draganddrop.png">
+                            </figure>
+                        </div>
                         <div v-for="image in detailTheme.images" class="column is-4">
-                            <figure class="image">
-                                <img :src="getThumbnail(image.filename)">
+                            <figure class="image" @click="openDetailModal(image.thumb_url)">
+                                <img :src="image.thumb_url">
                             </figure>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="tile">
-            <div class="tile is-ancestor is-2">
-                <!--<div class="tile  is-vertical is-3">-->
-                    <!--<div class="tile is-parent">-->
-                        <!--<article class="tile is-child notification is-info" @dragleave.prevent @dragover.prevent @drop.prevent="onDrop">-->
-                            <!--<p class="title">Middle tile</p>-->
-                            <!--<p class="subtitle">With an image</p>-->
-                            <!--<figure class="image is-4by3">-->
-                                <!--<img src="/images/draganddrop.png">-->
-                            <!--</figure>-->
-                        <!--</article>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="tile is-parent" v-for="image in detailTheme.images">-->
-                    <!--<article class="tile is-child notification is-info">-->
-                        <!--<p class="title">{{image.filename}}</p>-->
-                        <!--<p class="subtitle">With an image</p>-->
-                        <!--<figure class="image is-4by3">-->
-                            <!--<img src="https://bulma.io/images/placeholders/640x480.png">-->
-                        <!--</figure>-->
-                    <!--</article>-->
-                <!--</div>-->
+        <b-modal :active.sync="isDetailImageModalActive" :width="640" scroll="keep">
+            <div class="box">
+                <div class="card">
+                    <div class="card-image">
+                        <figure class="image">
+                            <img :src="detailUrl" alt="Placeholder image">
+                        </figure>
+                    </div>
+                </div>
             </div>
-        </div>
+        </b-modal>
         <b-modal :active.sync="isCardModalActive" :width="640" scroll="keep">
             <div class="box">
                 <div class="card">
@@ -63,7 +60,6 @@
                 </div>
             </div>
         </b-modal>
-
     </div>
 </template>
 
@@ -76,7 +72,9 @@
           return {
               isCardModalActive:false,
               dataUrl:"でもこれ？",
-              uploadFile: null
+              uploadFile: null,
+              isDetailImageModalActive:false,
+              detailUrl:null
           }
         },
         computed:{
@@ -115,6 +113,10 @@
                 const formData = new FormData();
                 formData.append('file', this.uploadFile);
                 this.$store.dispatch("UPLOAD_IMAGE_OF_THEME",{themeId: this.detailTheme.id, data:formData})
+            },
+            openDetailModal(image_url){
+                this.detailUrl = image_url;
+                this.isDetailImageModalActive = true;
             }
         },
     }

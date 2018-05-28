@@ -24,7 +24,12 @@ const store = () => new Vuex.Store({
                     }
                 }, 1000)
             })
-        }
+        },
+        SET_UPLOAD_IMAGE_URL(state){
+            state.detailTheme.images.forEach((c) => {
+                c.thumb_url = process.env.apiUrl + '/' + c.filename
+            })
+        },
     },
     getters:{
     },
@@ -56,11 +61,12 @@ const store = () => new Vuex.Store({
                     console.log(error);
             });
         },
-        GET_DETAIL_THEME({state}, {id}){
+        GET_DETAIL_THEME({state, commit}, {id}){
             return this.$axios.$get(`api/theme/${id}`)
                 .then((response) => {
-                    console.log(response)
+                    console.log(response);
                     state.detailTheme = response.data
+                    commit("SET_UPLOAD_IMAGE_URL")
                 }).catch((error) => {
                     throw new Error("a");
                 });
