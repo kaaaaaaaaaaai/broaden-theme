@@ -16,10 +16,12 @@ class ThemeResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'filename' => $this->filename,
             'images' => $this->image,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'scene' => $this->scene,
+            'product' => $this->product,
+            'character_text' => $this->character_text,
+            'created_at' => $this->created_at->format("Y-m-d h:m:i"),
+            'updated_at' => $this->updated_at->format("Y-m-d h:m:i")
         ];
     }
 }

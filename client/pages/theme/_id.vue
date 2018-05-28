@@ -4,9 +4,8 @@
             <div class="hero-body">
                 <div class="container">
                     <h1 class="title">{{detailTheme.scene}}</h1>
-                    <h1 class="title">{{detailTheme.id}}</h1>
                     <h2 class="subtitle">
-                        画像の投稿はPCからできます。
+                        {{detailTheme.character_text}}
                     </h2>
                 </div>
             </div>
@@ -21,15 +20,13 @@
                 <h1 class="title">一覧</h1>
                 <div>
                     <div class="columns is-multiline is-mobile is-centered">
-                        <div class="column is-3-mobile is-3-tablet is-hidden-mobile" @dragleave.prevent @dragover.prevent @drop.prevent="onDrop">
+                        <div class="column is-3-mobile is-paddingless is-3-tablet is-hidden-mobile" @dragleave.prevent @dragover.prevent @drop.prevent="onDrop">
                             <figure class="image" >
                                 <img src="/images/draganddrop.png">
                             </figure>
                         </div>
-                        <div v-for="image in detailTheme.images" class="column is-3-desktop is-3-tablet is-6-mobile">
-                            <figure @click="openDetailModal(image.thumb_url)">
-                                <img :src="image.thumb_url" style="max-height: 9em;">
-                            </figure>
+                        <div v-for="image in detailTheme.images" class="column is-paddingless is-3-desktop is-3-tablet is-4-mobile">
+                                <img :src="image.thumb_url" class="image" @click="openDetailModal(image.thumb_url)" style='    width:auto;height:auto;max-width:100%;max-height:8em;'>
                         </div>
                     </div>
                 </div>
