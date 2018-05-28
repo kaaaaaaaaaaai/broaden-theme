@@ -11,19 +11,44 @@
                 </div>
             </div>
         </section>
-        <div class="tile">
-            <div class="tile is-ancestor">
-                <div class="tile is-vertical is-8">
-                    <div class="tile is-parent">
-                        <article class="tile is-child notification is-info" @dragleave.prevent @dragover.prevent @drop.prevent="onDrop">
-                            <p class="title">Middle tile</p>
-                            <p class="subtitle">With an image</p>
-                            <figure class="image is-4by3">
-                                <img src="/images/draganddrop.png">
-                            </figure>
-                        </article>
+        <div class="section">
+            <div class="container">
+                <h1 class="title">Newest</h1>
+                <div>
+                    <div class="columns is-multiline is-mobile is-centered">
+                        <div v-for="image in detailTheme.images" class="column is-4">
+                            <article class="tile is-child notification is-info">
+                                <figure class="image is-4by3">
+                                    <img :src="getThumbnail(image.filename)">
+                                </figure>
+                            </article>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="tile">
+            <div class="tile is-ancestor is-2">
+                <!--<div class="tile  is-vertical is-3">-->
+                    <!--<div class="tile is-parent">-->
+                        <!--<article class="tile is-child notification is-info" @dragleave.prevent @dragover.prevent @drop.prevent="onDrop">-->
+                            <!--<p class="title">Middle tile</p>-->
+                            <!--<p class="subtitle">With an image</p>-->
+                            <!--<figure class="image is-4by3">-->
+                                <!--<img src="/images/draganddrop.png">-->
+                            <!--</figure>-->
+                        <!--</article>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="tile is-parent" v-for="image in detailTheme.images">-->
+                    <!--<article class="tile is-child notification is-info">-->
+                        <!--<p class="title">{{image.filename}}</p>-->
+                        <!--<p class="subtitle">With an image</p>-->
+                        <!--<figure class="image is-4by3">-->
+                            <!--<img src="https://bulma.io/images/placeholders/640x480.png">-->
+                        <!--</figure>-->
+                    <!--</article>-->
+                <!--</div>-->
             </div>
         </div>
         <b-modal :active.sync="isCardModalActive" :width="640" scroll="keep">
@@ -67,6 +92,9 @@
             })
         },
         methods:{
+            getThumbnail($piece){
+                return process.env.FRONT_API_URL + "/" + $piece
+            },
             //inputタグとドラッグ&ドロップから呼ばれる
             onDrop:function(event){
                 let fileList = event.target.files ?

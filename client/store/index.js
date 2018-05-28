@@ -60,7 +60,7 @@ const store = () => new Vuex.Store({
             return this.$axios.$get(`api/theme/${id}`)
                 .then((response) => {
                     console.log(response)
-                    state.detailTheme = response
+                    state.detailTheme = response.data
                 }).catch((error) => {
                     throw new Error("a");
                 });
@@ -68,16 +68,14 @@ const store = () => new Vuex.Store({
         UPLOAD_IMAGE_OF_THEME({},{data, themeId}){
             let config = {
                 headers: {
-                    'content-type': 'multipart/form-data',
-                    "Access-Control-Allow-Origin": "http://localhost:3000"
+                    'content-type': 'multipart/form-data'
                 }
             };
             this.$axios.$post(`api/theme/${themeId}/upload`, data)
                 .then((response) => {
                     console.log(response)
-                    state.detailTheme = response
                 }).catch((error) => {
-                    throw new Error("a");
+                    throw new Error("cant upload error");
                 });
         }
     }
