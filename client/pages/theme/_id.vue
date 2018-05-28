@@ -13,15 +13,13 @@
         </section>
         <div class="section">
             <div class="container">
-                <h1 class="title">Newest</h1>
+                <h1 class="title">一覧</h1>
                 <div>
                     <div class="columns is-multiline is-mobile is-centered">
                         <div v-for="image in detailTheme.images" class="column is-4">
-                            <article class="tile is-child notification is-info">
-                                <figure class="image is-4by3">
-                                    <img :src="getThumbnail(image.filename)">
-                                </figure>
-                            </article>
+                            <figure class="image">
+                                <img :src="getThumbnail(image.filename)">
+                            </figure>
                         </div>
                     </div>
                 </div>
