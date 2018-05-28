@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar is-white" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <div class="navbar-item">Lit</div>
+            <div class="navbar-item"><nuxt-link to="/" class="navbar-item">Lit</nuxt-link></div>
             <div class="navbar-burger" @click="toggleMenu" :class="{'is-active': isMenuActive}">
                 <span></span>
                 <span></span>
