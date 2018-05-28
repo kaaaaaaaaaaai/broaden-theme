@@ -11,7 +11,6 @@
             </div>
         </section>
         <div class="notification is-info is-hidden-tablet">
-            <button class="delete"></button>
             画像の投稿はPCからできます。
         </div>
 
@@ -25,8 +24,15 @@
                                 <img src="/images/draganddrop.png">
                             </figure>
                         </div>
-                        <div v-for="image in detailTheme.images" class="column is-paddingless is-3-desktop is-3-tablet is-4-mobile">
-                                <img :src="image.thumb_url" class="image" @click="openDetailModal(image.thumb_url)" style='    width:auto;height:auto;max-width:100%;max-height:8em;'>
+                        <div v-if="detailTheme.images.length > 1">
+                            <div v-for="image in detailTheme.images" class="column is-paddingless is-3-desktop is-3-tablet is-4-mobile">
+                                    <img :src="image.thumb_url" class="image" @click="openDetailModal(image.thumb_url)" style='    width:auto;height:auto;max-width:100%;max-height:8em;'>
+                            </div>
+                        </div>
+                        <div v-else>
+                            <div class="notification is-success">
+                                投稿がまたありません。一番目の投稿を！
+                            </div>
                         </div>
                     </div>
                 </div>

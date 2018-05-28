@@ -17,10 +17,10 @@
 
         <div class="section">
             <div class="container">
-                <h1 class="title">Trending</h1>
+                <h1 class="title">人気のお題</h1>
                 <div id="themeList">
                     <div class="columns is-multiline is-mobile is-centered">
-                        <div v-for="theme in popularContents" class="column is-3">
+                        <div v-for="theme in popularContents" class="column is-6-mobile is-3-desktop is-3-tablet">
                             <vue-item :data="theme"></vue-item>
                         </div>
                     </div>
@@ -29,10 +29,10 @@
         </div>
         <div class="section">
             <div class="container">
-                <h1 class="title">Newest</h1>
+                <h1 class="title">新しいお題</h1>
                 <div>
                     <div class="columns is-multiline is-mobile is-centered">
-                        <div v-for="theme in Contents" class="column is-3">
+                        <div v-for="theme in Contents" class="column is-6-mobile is-3-desktop is-3-tablet">
                             <vue-item :data="theme"></vue-item>
                         </div>
                     </div>

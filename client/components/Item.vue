@@ -5,11 +5,6 @@
             <img :src="data.thumb_url" :alt="data.title">
           </figure>
         </div>
-        <footer class="card-footer">
-            <a href="#" class="card-footer-item">Save</a>
-            <a href="#" class="card-footer-item">Edit</a>
-            <a href="#" class="card-footer-item">Delete</a>
-        </footer>
       <b-modal :active.sync="isCardModalActive" :width="640" scroll="keep">
         <div class="card">
             <header class="card-header">
@@ -27,11 +22,26 @@
             </div>
             <footer class="card-footer">
               <p class="card-footer-item">
-                <span><button class="button is-primary" @click= "vote"><b-icon icon="volume-high"></b-icon><span>投票する</span></button></span>
+                    <button class="button is-primary" @click= "vote"><b-icon icon="volume-high"></b-icon><span>応援する</span></button>
+                    <b-tooltip
+                            label="お題を応援することによって残り時間を延長できます。お題の絵を書いてくれる人が増えるカモ!?"
+                            position="is-top"
+                            size="is-large"
+                            multilined>
+                            <b-icon
+                                    icon="info-circle"
+                                    size="is-medium">
+                            </b-icon>
+                    </b-tooltip>
               </p>
               <p class="card-footer-item">
-                <span>残り:{{data.diffInMinutes}}</span>
+                <span>残り:{{data.diffInMinutes}}分</span>
               </p>
+                <p class="card-footer-item">
+                    <nuxt-link :to="{name:'theme-id', params:{id:data.id}}">
+                    <button class="button is-primary"><span>投稿画像へ</span></button>
+                    </nuxt-link>
+                </p>
             </footer>
         </div>
       </b-modal>
