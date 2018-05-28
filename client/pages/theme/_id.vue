@@ -21,7 +21,7 @@
                 <h1 class="title">一覧</h1>
                 <div>
                     <div class="columns is-multiline is-mobile is-centered">
-                        <div class="column is-4" @dragleave.prevent @dragover.prevent @drop.prevent="onDrop">
+                        <div class="column is-4 is-hidden-mobile" @dragleave.prevent @dragover.prevent @drop.prevent="onDrop">
                             <figure class="image" >
                                 <img src="/images/draganddrop.png">
                             </figure>
