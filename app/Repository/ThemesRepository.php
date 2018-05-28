@@ -52,7 +52,7 @@ class ThemesRepository
     }
 
     public function detail($id){
-        $data = $this->themes->find($id);
+        $data = $this->themes->aliveTheme($this->carbon)->find($id);
 
         $data->diffInMinutes = $data->diff_minutes_from_now;
 
