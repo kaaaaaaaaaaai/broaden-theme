@@ -45,8 +45,8 @@
                                     <img :src="image.thumb_url" class="image" @click="openDetailModal(image.thumb_url)" style='    width:auto;height:auto;max-width:100%;max-height:8em;'>
                             </div>
                         </div>
-                        <div v-else>
-                            <div class="notification is-success">
+                        <div v-else class="column is-12">
+                            <div class=" notification is-success">
                                 投稿がまたありません。一番目の投稿を！
                             </div>
                         </div>
