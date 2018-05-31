@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 class Themes extends Model
 {
     protected $table = "themes";
-    protected $fillable = ["character_text", "product", "scene", "close_time"];
+    protected $fillable = ["summary", "detail", "close_time"];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

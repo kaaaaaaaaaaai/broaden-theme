@@ -13,23 +13,14 @@
               </div>
               <div class="field">
                 <div class="control">
-                  <label for="title" class="label">作品名</label>
-                  <input type="input" class="input" id="title" name="title" v-model="title" placeholder="作品名" value="" required />
+                  <label for="summary" class="label">お題 ※必須</label>
+                  <textarea type="textarea" class="textarea" id="summary" name="summary" v-model="title" placeholder="お題" value="" required />
                 </div>
               </div>
               <div class="field">
                 <div class="control">
-                  <label for="character" class="label">キャラ</label>
-                  <input type="input" name="character" id="character" class="input" value="" placeholder="「,」区切りで3キャラまで" required v-model="character"/>
-                  <div class="control tags">
-                    <span class="tag is-info" v-for="tag in characterList"> {{ tag }} </span>
-                  </div>
-                </div>
-              </div>
-              <div class="field">
-                <div class="control">
-                  <label for="seen" class="label">シチュエーション</label>
-                  <textarea type="textarea" name="seen" id="seen" class="textarea" v-model="seen" value="" placeholder="シチュや設定など" />
+                  <label for="detail" class="label">詳細</label>
+                  <textarea type="textarea" name="detail" id="detail" class="textarea" value="" placeholder="シチュエーションなどの詳細情報" />
                 </div>
               </div>
               <div class="field">
@@ -56,9 +47,8 @@
         data() {
             return{
                 errors      : [],
-                title       : null,
-                character    : "",
-                characterList: [],
+                summary       : null,
+                detail      : null,
                 seen        : null,
             };
         },
@@ -79,9 +69,8 @@
             upload(){
                 let formData = new FormData();
 
-                formData.append('character_text',this.character);
-                formData.append('product',this.title);
-                formData.append('scene',this.seen);
+                formData.append('detail',this.character);
+                formData.append('summary',this.title);
 
                 axios.post(process.env.apiUrl + '/api/theme/add', formData)
                    .then((response) => {

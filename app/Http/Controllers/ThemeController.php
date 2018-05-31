@@ -151,7 +151,7 @@ class ThemeController extends Controller
         $size = 60;
         //ThankU!
         $font1 = public_path("hs6.ttc");
-        $str = $this->array_wordwrap($request->get("character_text"));
+        $str = $this->array_wordwrap($request->get("summary"));
         $tb = imagettfbbox($size, 0, $font1, $str);
 
         $x = ceil((1000 - $tb[2]) / 2); //640は画像の幅
