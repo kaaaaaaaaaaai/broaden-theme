@@ -148,7 +148,7 @@ class ThemeController extends Controller
         $bg_colors = $this->baseColorPick[mt_rand(0, count($this->baseColorPick) - 1)];
 
         $bg = ImageColorAllocate ($im, $bg_colors["r"], $bg_colors["g"], $bg_colors["b"]);
-        $size = 40;
+        $size = 50;
 //ThankU!
         $font1 = public_path("hs6.ttc");
         $str = $this->array_wordwrap($request->get("character_text"));
