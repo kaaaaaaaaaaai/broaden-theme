@@ -87,7 +87,7 @@ class ThemeController extends Controller
     private function array_wordwrap($char){
         return  $this->mb_wordwrap(
             $char,
-            15,
+            10,
             "\n",
             true
         );
@@ -148,8 +148,8 @@ class ThemeController extends Controller
         $bg_colors = $this->baseColorPick[mt_rand(0, count($this->baseColorPick) - 1)];
 
         $bg = ImageColorAllocate ($im, $bg_colors["r"], $bg_colors["g"], $bg_colors["b"]);
-        $size = 50;
-//ThankU!
+        $size = 60;
+        //ThankU!
         $font1 = public_path("hs6.ttc");
         $str = $this->array_wordwrap($request->get("character_text"));
         $tb = imagettfbbox($size, 0, $font1, $str);
