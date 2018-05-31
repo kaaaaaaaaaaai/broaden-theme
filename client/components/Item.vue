@@ -51,7 +51,8 @@
 <style scoped>
   .imageContainer{
     box-shadow: 7px 10px 7px 0px rgba(10,10,10,.2);
-    border-radius: 5px;
+    border-radius: 10px;
+    overflow: hidden;
   }
   .imageContainer__image--round{
     border-radius: 5px;
