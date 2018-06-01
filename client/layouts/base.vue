@@ -1,8 +1,7 @@
 <template>
     <div>
         <navbar/>
-        <nuxt/>
-
+        <nuxt class="has-background-grey-lighter"/>
     </div>
 </template>
 

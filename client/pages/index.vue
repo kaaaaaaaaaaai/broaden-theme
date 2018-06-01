@@ -1,15 +1,11 @@
 <template>
     <div>
-        <section class="hero is-primary">
+        <section class="hero">
             <div class="hero-body">
-                <div class="container">
-                    <h1 class="title">
-                        ようこそ！ Litへ
-                    </h1>
-                    <h2 class="subtitle">
-                        人気のお題を描きましょう！<br/> 書いた絵は「匿名」でお題に投稿できます！<br/>
-                        お題は「応援」がないと自動で削除されます…<br/>投稿も一緒に削除されます。下書きも途中でもアップロードしちゃいましょう！
-                    </h2>
+                <div class="container has-text-centered">
+                  <figure class="">
+                      <img src="../static/images/hero-img.jpg" width="450" height="120"></img>
+                  </figure>
                 </div>
             </div>
         </section>
