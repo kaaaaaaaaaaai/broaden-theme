@@ -1,7 +1,7 @@
 <template>
     <div>
         <navbar/>
-        <nuxt class="has-background-grey-lighter"/>
+        <nuxt class="has-background-grey-lighter  "/>
     </div>
 </template>
 
@@ -13,3 +13,9 @@
         }
     }
 </script>
+
+<style>
+  .has-background-grey-lighter{
+    background-color: #E5E7ED;
+  }
+</style>

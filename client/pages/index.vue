@@ -1,39 +1,54 @@
 <template>
     <div>
         <section class="hero">
-            <div class="hero-body">
+            <div class="hero-head is-white">
+                <b-tabs v-model="activeTab" position="is-centered" class="block">
+                  <b-tab-item label="人気のお題"></b-tab-item>
+                  <b-tab-item label="新しいお題"> </b-tab-item>
+                </b-tabs>
+            </div>
+            <div class="hero-body is-paddingless">
                 <div class="container has-text-centered">
-                  <figure class="">
-                      <img src="../static/images/hero-img.jpg" width="450" height="120"></img>
+                  <figure>
+                      <img src="../static/images/hero-img.jpg"></img>
                   </figure>
                 </div>
             </div>
         </section>
         <div class="container is-fluid">
 
-        <div class="section">
+        <div class="section" v-if="!activeTab">
             <div class="container">
-                <h1 class="title">人気のお題</h1>
-                <div id="themeList">
-                    <div class="columns is-multiline is-mobile is-centered">
-                        <div v-for="theme in popularContents" class="column is-6-mobile is-3-desktop is-3-tablet">
-                            <vue-item :data="theme"></vue-item>
-                        </div>
-                    </div>
+              <div class="card">
+                <header class="card-header-title  is-centered">
+                      <h2 class="title">人気のお題</h2>
+                </header>
+                <div class="card-content is-light">
+                  <div id="themeList" class="content">
+                      <div class="columns is-multiline is-mobile is-centered">
+                          <div v-for="theme in popularContents" class="column is-6-mobile is-3-desktop is-3-tablet">
+                              <vue-item :data="theme"></vue-item>
+                          </div>
+                      </div>
+                  </div>
                 </div>
+              </div>
             </div>
         </div>
-        <hr style="height: 2px">
-        <div class="section">
+        <div class="section" v-if="activeTab">
             <div class="container">
-                <h1 class="title">新しいお題</h1>
-                <div>
-                    <div class="columns is-multiline is-mobile is-centered">
-                        <div v-for="theme in Contents" class="column is-6-mobile is-3-desktop is-3-tablet">
-                            <vue-item :data="theme"></vue-item>
-                        </div>
-                    </div>
+              <div class="card">
+                <header class="card-header-title  is-centered">
+                      <h2 class="title">新しいお題</h2>
+                </header>
+                <div class="card-content">
+                  <div class="columns is-multiline is-mobile is-centered">
+                      <div v-for="theme in Contents" class="column is-6-mobile is-3-desktop is-3-tablet">
+                          <vue-item :data="theme"></vue-item>
+                      </div>
+                  </div>
                 </div>
+              </div>
             </div>
         </div>
         </div>
@@ -53,7 +68,8 @@
         ]),
         data: function() {
             return {
-                contentInfo : []
+                contentInfo : [],
+                activeTab: 0,
             };
         },
         //キャメルケースで登録して使うときはスネークケースらしい
@@ -69,3 +85,10 @@
         }
     }
 </script>
+
+<style media="screen">
+img{
+ height: auto;
+ max-width: 350px;
+}
+</style>
